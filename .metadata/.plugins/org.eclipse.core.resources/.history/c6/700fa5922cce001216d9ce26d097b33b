@@ -1,0 +1,12 @@
+package mimos.persistencia;
+import mimos.constantes.Sexo;
+
+
+public class Pessoa {
+	private String nome;
+	private Sexo sexo;
+	private String cpf;
+	private java.util.Date dataNascimento;
+	private String email;
+		
+}
