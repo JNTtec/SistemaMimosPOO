@@ -1,0 +1,128 @@
+!SESSION 2013-06-06 00:22:34.414 -----------------------------------------------
+eclipse.buildId=M20120914-1800
+java.version=1.7.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=pt_BR
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.equinox.p2.engine 4 4 2013-06-06 00:32:17.775
+!MESSAGE An error occurred while collecting items to be installed
+!SUBENTRY 1 org.eclipse.equinox.p2.engine 4 0 2013-06-06 00:32:17.775
+!MESSAGE session context was:(profile=SDKProfile, phase=org.eclipse.equinox.internal.p2.engine.phases.Collect, operand=, action=).
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.core,1.5.2.r38x201302111859
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.core.databinding,1.5.2.r38x201302111907
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.core.databinding.xml,1.5.2.r38x201302111919
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.wb.core.feature,1.5.2.r38x201302111859
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.core.java,1.5.2.r38x201302111907
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.wb.core.java.feature,1.5.2.r38x201302111907
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.core.lib,1.5.2.r38x201302111859
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.core.ui,1.5.2.r38x201302111927
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.wb.core.ui.feature,1.5.2.r38x201302111927
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.core.xml,1.5.2.r38x201302111919
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.wb.core.xml.feature,1.5.2.r38x201302111919
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.discovery.core,1.5.2.r38x201302111927
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.discovery.ui,1.5.2.r38x201302111927
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.doc.user,1.5.2.r38x201302111931
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.wb.doc.user.feature,1.5.2.r38x201302111931
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.layout.group,1.5.2.r38x201302111942
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.wb.layout.group.feature,1.5.2.r38x201302111942
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.os,1.5.2.r38x201302111859
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.os.win32,1.5.2.r38x201302111859
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.rcp,1.5.2.r38x201302112047
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.rcp.SWT_AWT,1.5.2.r38x201302112057
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.wb.rcp.SWT_AWT_support,1.5.2.r38x201302112057
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.rcp.databinding,1.5.2.r38x201302112047
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.rcp.databinding.emf,1.5.2.r38x201302112047
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.rcp.databinding.xwt,1.5.2.r38x201302112106
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.rcp.doc.user,1.5.2.r38x201302112005
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.wb.rcp.doc.user.feature,1.5.2.r38x201302112005
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.wb.rcp.feature,1.5.2.r38x201302112047
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.rcp.nebula,1.5.2.r38x201302112047
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.rcp.swing2swt,1.5.2.r38x201302112047
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.runtime,1.5.2.r38x201302111859
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.runtime.lib,1.5.2.r38x201302111859
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.775
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.swing,1.5.2.r38x201302112024
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.776
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.swing.FormLayout,1.5.2.r38x201302112024
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.776
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.swing.FormLayout.lib,1.5.2.r38x201302112024
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.776
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.swing.MigLayout,1.5.2.r38x201302112024
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.776
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.swing.MigLayout.lib,1.5.2.r38x201302112024
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.776
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.swing.databinding,1.5.2.r38x201302112024
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.776
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.swing.doc.user,1.5.2.r38x201302112011
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.776
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.wb.swing.doc.user.feature,1.5.2.r38x201302112011
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.776
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.wb.swing.feature,1.5.2.r38x201302112024
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.776
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.swing.java6,1.5.2.r38x201302112024
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.776
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.swing.jsr296,1.5.2.r38x201302112024
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.776
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.swt,1.5.2.r38x201302112017
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.776
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.wb.swt.feature,1.5.2.r38x201302112017
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.776
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.swt.widgets.baseline,1.5.2.r38x201302112047
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.776
+!MESSAGE No repository found containing: osgi.bundle,org.eclipse.wb.xwt,1.5.2.r38x201302112106
+!SUBENTRY 1 org.eclipse.equinox.p2.artifact.repository 4 0 2013-06-06 00:32:17.776
+!MESSAGE No repository found containing: org.eclipse.update.feature,org.eclipse.wb.xwt.feature,1.5.2.r38x201302112106
+
+!ENTRY org.eclipse.equinox.p2.touchpoint.natives 2 0 2013-06-06 00:42:21.584
+!MESSAGE Could not remove temporary backup directory (it is safe to manually delete it and its contents): C:\Users\JNT\AppData\Local\Temp\SDKProfile_27e2f27b4700_c0a80065cea7
+!SESSION 2013-06-06 00:49:11.451 -----------------------------------------------
+eclipse.buildId=M20130204-1200
+java.version=1.7.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=pt_BR
+Command-line arguments:  -os win32 -ws win32 -arch x86
+
+!ENTRY org.eclipse.ui 2 2 2013-06-06 01:19:06.679
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+!SESSION 2013-06-14 21:33:22.233 -----------------------------------------------
+eclipse.buildId=M20130204-1200
+java.version=1.7.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=pt_BR
+Command-line arguments:  -os win32 -ws win32 -arch x86 -data C:\Users\JNT\Documents\GitHub\SistemaMimosPOO
+
+!ENTRY org.eclipse.ui 2 2 2013-06-14 21:40:01.080
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
