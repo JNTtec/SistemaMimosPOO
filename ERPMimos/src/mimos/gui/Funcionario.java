@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -11,13 +12,19 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Funcionario {
+public class Funcionario implements ActionListener{
 
 	private JFrame frmCadastrarFuncionrio;
-
-	/**
-	 * Launch the application.
-	 */
+	private JPanel panPrincipal;
+	private JPanel panDetalhes;
+	
+	private JButton btnInserir;
+	private JButton btnAtualizar;
+	private JButton btnRemover;
+	private JButton btnPesquisar;
+	
+	
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -54,6 +61,12 @@ public class Funcionario {
 			}
 		});
 		frmCadastrarFuncionrio.getContentPane().add(btnNewButton);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
