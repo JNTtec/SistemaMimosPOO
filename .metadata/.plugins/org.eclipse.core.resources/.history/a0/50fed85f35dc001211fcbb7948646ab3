@@ -1,0 +1,68 @@
+package mimos.gui;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import javax.swing.SwingConstants;
+import javax.swing.JButton;
+import java.awt.GridLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Funcionario implements ActionListener{
+
+	private JFrame frmCadastrarFuncionrio;
+	private JPanel panPrincipal;
+	private JPanel panDetalhes;
+	
+	private JButton btnInserir;
+	private JButton btnAtualizar;
+	private JButton btnRemover;
+	private JButton btnPesquisar;
+	
+	
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FuncionarioView window = new FuncionarioView();
+					window.frmCadastrarFuncionrio.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Funcionario() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frmCadastrarFuncionrio = new JFrame();
+		frmCadastrarFuncionrio.setTitle("Cadastrar Funcionário");
+		frmCadastrarFuncionrio.setBounds(100, 100, 450, 300);
+		frmCadastrarFuncionrio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmCadastrarFuncionrio.getContentPane().setLayout(new GridLayout(2, 1, 3, 0));
+		
+		JPanel panel = new JPanel();
+		frmCadastrarFuncionrio.getContentPane().add(panel);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

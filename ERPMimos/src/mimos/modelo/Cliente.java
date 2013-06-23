@@ -1,11 +1,43 @@
 package mimos.modelo;
 
-public class Cliente {
+import mimos.constantes.Sexo;
+
+public class Cliente{
 	private long cod_cliente;
-	private String nome;
 	private String telefone;
 	private String endereco;
 	private long id_empresa;
+	private String nome;
+	private Sexo sexo;
+	private String cpf;
+	private java.util.Date dataNascimento;
+	private String email;
+	
+	public Sexo getSexo() {
+		return sexo;
+	}
+	public void setSexo(Sexo sexo) {
+		this.sexo = sexo;
+	}
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	public java.util.Date getDataNascimento() {
+		return dataNascimento;
+	}
+	public void setDataNascimento(java.util.Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+		
 	public long getCod_cliente() {
 		return cod_cliente;
 	}
