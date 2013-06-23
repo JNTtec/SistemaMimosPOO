@@ -74,7 +74,7 @@ public class ClienteView extends JFrame implements ActionListener{
 
 		
 		contentPane.add(pnCampos, BorderLayout.NORTH);
-		pnCampos.setLayout(new GridLayout(8,2));
+		pnCampos.setLayout(new GridLayout(2,2));
 		
 		JPanel pnBotoes = new JPanel();
 		contentPane.add(pnBotoes, BorderLayout.SOUTH);
