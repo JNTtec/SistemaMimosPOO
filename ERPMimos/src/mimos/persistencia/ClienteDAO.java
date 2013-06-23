@@ -1,7 +1,6 @@
 package mimos.persistencia;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import mimos.constantes.Constante;
 import mimos.excecao.MimosException;
-import mimos.modelo.Artesao;
 import mimos.modelo.Cliente;
 
 public class ClienteDAO {
@@ -43,6 +41,7 @@ public void alterarCliente(Cliente cliente) throws MimosException {
      stmt.setString(2, cliente.getTelefone());
      stmt.setString(3, cliente.getEndereco());
      stmt.setDouble(4, cliente.getId_empresa());
+     stmt.setLong(5, cliente.getCod_cliente());
      stmt.executeUpdate();
      
      }catch(SQLException ex){
