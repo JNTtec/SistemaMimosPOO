@@ -11,7 +11,7 @@ public class ClienteTableModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = -118848275315309927L;
 	private List<Cliente> clientes;
-	private final static String[] columnNames = {"COD", "NOME", "ENDEREÇO", "TELEFONE", "CPF","SEXO" , "DATA NASCIMENTO","EMAIL"};
+	private String[] columnNames = {"COD", "NOME", "ENDEREÇO", "TELEFONE", "CPF","SEXO" , "DATA NASCIMENTO","EMAIL"};
 
 	public ClienteTableModel(List<Cliente> clientes) { 
 		this.clientes = clientes;

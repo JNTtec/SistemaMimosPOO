@@ -135,10 +135,12 @@ public class ClienteView extends JFrame implements ActionListener , ListSelectio
 		pnCampos.add(lblemail);
 		pnCampos.add(txtemail);
 		
-
+<<<<<<< HEAD
 		contentPane.add(pnCampos, BorderLayout.NORTH);
-		pnCampos.setLayout(new GridLayout(8,2));
-
+		pnCampos.setLayout(new GridLayout(2,2));
+=======
+	//	pnCampos.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNome, txtEndereco, lblEndereco, txtNome}));
+>>>>>>> Criando view cliente e Classe de envio de mensagens
 		
 		JPanel pnBotoes = new JPanel();
 		contentPane.add(pnBotoes, BorderLayout.SOUTH);

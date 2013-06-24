@@ -73,9 +73,10 @@ public class ClienteView extends JFrame implements ActionListener , ListSelectio
 	private final JTextField txtemail = new JTextField();
 	private final JLabel lblCodCliente = new JLabel("Cod:");
 	private final JTextField txtCodCliente = new JTextField();
-	private final JTable tabela = new JTable();
+	private JTable tabela = new JTable();
 	public MandarMensagem m = new MandarMensagem();
-	
+	public ClienteTableModel modeloCliente;
+	private List<Cliente> clientes;
 	/**
 	 * Launch the application.
 	 */
@@ -113,6 +114,8 @@ public class ClienteView extends JFrame implements ActionListener , ListSelectio
 		contentPane.add(pnCampos, BorderLayout.NORTH);
 		pnCampos.setLayout(new GridLayout(8,2));
 		
+		modeloCliente = new ClienteTableModel(clientes);
+		tabela = new JTable(modeloCliente);
 		contentPane.add(new JScrollPane(tabela), BorderLayout.CENTER);
 		
 		cmbSexo = new JComboBox<Sexo>() ;
@@ -199,7 +202,8 @@ public class ClienteView extends JFrame implements ActionListener , ListSelectio
 			try {
 				if (txtNome.getText() != ""){
 				clientes = ctp.realizaPesquisa(txtNome.getText());
-		
+				
+					
 			tabela.setModel(new ClienteTableModel( clientes ) );
 			tabela.repaint();
 			}
