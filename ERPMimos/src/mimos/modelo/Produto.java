@@ -9,7 +9,7 @@ public class Produto {
 	
 	private long codigoProd;
 	public long getCodigoProd() {
-		return codigoProd;
+		return codigoProd=-1;
 	}
 	public void setCodigoProd(long codigoProd) {
 		this.codigoProd = codigoProd;

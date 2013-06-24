@@ -2,6 +2,7 @@ package mimos.modelo;
 
 public class MateriaPrima {
 	private long cod_materia_prima;
+	private String nome;
 	private long cod_fornecedor;
 	private String tipo;
 	private String descricao;
@@ -10,6 +11,14 @@ public class MateriaPrima {
 	}
 	public void setCod_materia_prima(long cod_materia_prima) {
 		this.cod_materia_prima = cod_materia_prima;
+		
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	public long getCod_fornecedor() {
 		return cod_fornecedor;

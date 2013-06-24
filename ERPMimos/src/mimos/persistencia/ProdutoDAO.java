@@ -14,10 +14,10 @@ public class ProdutoDAO {
     PreparedStatement stmt = null;
     Produto produto;
     ResultSet rs = null;
-    private static final String SQL_INCLUIRPRODUTO = "insert into produto (cod_produto,descricao,preco,margem_lucro,preco_venda,quantidade"+
+    private static final String SQL_INCLUIRPRODUTO = "insert into produto (cod_produto,descricao,preco,margem_lucro_perc,preco_venda,quantidade)"+
              " values (?,?,?,?,?,?)";
     private static final String SQL_ALTERARPRODUTO = "UPDATE produto set "
-    		+"descricao=?,preco=?,margem_lucro=?,preco_venda=?,quantidade=?"
+    		+"descricao=?,preco=?,margem_lucro_perc=?,preco_venda=?,quantidade=?"
     		+"where cod_produto=?";
     private static final String SQL_EXCLUIRPRODUTO =  
     		"Delete produto where cod_produto= ?";
@@ -68,9 +68,14 @@ public class ProdutoDAO {
         }
         }
     public void gravarProduto(Produto produto)throws MimosException {
+    	System.out.println(produto.getCodigoProd());
         if (produto.getCodigoProd() == Constante.NOVO){
             incluirProduto(produto);
-        }
+            System.out.println("passou");
+          
+        
+    }
+        
     }
         public void incluirProduto (Produto produto) throws MimosException{
 	        if (produto== null){
@@ -81,9 +86,11 @@ public class ProdutoDAO {
 	            
 	            con = GerenciadorDeConexao.getConexao();
 	            stmt = con.prepareStatement (SQL_INCLUIRPRODUTO);
+	           
 	            GeradorDeChave geradorDeChave = new GeradorDeChave("PRODUTO");
 	            long codigoproduto = geradorDeChave.getProximoCodigo();
-	            String status = "ativo";
+	            
+	            
 	            stmt.setLong (1 ,codigoproduto);
 	            stmt.setString (2 ,produto.getDescricao());
 	            stmt.setDouble (3 ,produto.getPreco());
@@ -131,7 +138,7 @@ public class ProdutoDAO {
 	            produto.setCodigoProd(rs.getLong("COD_PRODUTO"));
 	            produto.setDescricao(rs.getString("DESCRICAO"));
 	            produto.setPreco(rs.getDouble("PRECO"));
-	            produto.setMargemLucro(rs.getDouble("MARGEM_LUCRO"));
+	            produto.setMargemLucro(rs.getDouble("MARGEM_LUCRO_PERC"));
 	            produto.setPrecoVenda(rs.getDouble("PRECO_VENDA"));
 	            produto.setQuantidade(rs.getDouble("QUANTIDADE"));
 	           }

@@ -7,6 +7,7 @@ import mimos.persistencia.ProdutoDAO;
 import java.util.*;
 public class ProdutoControle {
 	public void adiciona (Produto produto) throws MimosException{
+	
         ProdutoDAO dao = new ProdutoDAO ();
         dao.gravarProduto(produto);
     }
@@ -14,6 +15,7 @@ public class ProdutoControle {
 	      List <Produto> lista = new ArrayList<Produto>();
 	      ProdutoDAO dao = new ProdutoDAO();
 	      lista = dao.pesquisarProduto(nome);
+	      System.out.println("passou");
 	      return lista;
 	 }
 	 public void excluirProduto(Produto produto) throws MimosException {

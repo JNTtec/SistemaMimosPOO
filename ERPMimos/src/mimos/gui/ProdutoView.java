@@ -3,6 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import mimos.excecao.MimosException;
@@ -14,12 +15,17 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+
 import mimos.modelo.Produto;
 import mimos.controle.ProdutoControle;
 import mimos.persistencia.ProdutoDAO;
 
 
-public class ProdutoView implements  ActionListener {
+public class ProdutoView implements    ActionListener, ListSelectionListener {
 	private JFrame janela;
 	private JPanel panPrincipal;
 	private JPanel panSouth;
@@ -103,15 +109,17 @@ public class ProdutoView implements  ActionListener {
 		produto.setQuantidade( Double.parseDouble(txtQuantidade.getText()) );
 		return produto;
 	}
+
 	
 	private ProdutoDAO produtoDAO;
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
 		ProdutoControle prod = new ProdutoControle();
-		if ("INSERIR".equalsIgnoreCase( cmd )) { 
+		if ("Inserir".equalsIgnoreCase( cmd )) { 
 			try {
 			prod.adiciona(telaToProduto());
+			
 			}
 			catch(MimosException ex){
 				System.out.println(ex.getMessage());
@@ -134,7 +142,10 @@ public class ProdutoView implements  ActionListener {
 		} else if ("PESQUISAR TITULO".equalsIgnoreCase( cmd )) {
 			try{
 			produto = prod.realizaPesquisa( txtDescricao.getText() );
+			tblDados.setModel(new ProdutoModel (produto));
+			tblDados.repaint();
 			modeloProduto.setProduto(produto);
+			 
 			}
 			catch(MimosException ex){
 				System.out.println(ex.getMessage());
@@ -142,8 +153,24 @@ public class ProdutoView implements  ActionListener {
 		}
 		
 	}
+	public void publishAlunoToView(Produto a) { 
+		txtDescricao.setText( a.getDescricao() );
+		txtPreco.setText( String.valueOf(a.getPreco() ));
+		txtMargemLucro.setText( String.valueOf( a.getMargemLucro() ) );
+		txtPrecoVenda.setText( String.valueOf( a.getPrecoVenda()  ) );
+		txtPrecoVenda.setText( String.valueOf( a.getPrecoVenda()  ) );
+		txtQuantidade.setText( String.valueOf( a.getQuantidade()  ) );
+	}
 	public static void main(String args[]){
 		ProdutoView p = new ProdutoView();
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		ListSelectionModel lsm = (ListSelectionModel)e.getSource();
+		ProdutoModel atm = (ProdutoModel)tblDados.getModel();
+		Produto a = atm.get( lsm.getAnchorSelectionIndex() );
+		publishAlunoToView(a);
 	}
 
 }

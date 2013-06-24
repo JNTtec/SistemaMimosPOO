@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import mimos.excecao.MimosException;
 
 public class GerenciadorDeConexao {
-	private static final String URL = "jdbc:mysql://localhost:3306/Poo";
+	private static final String URL = "jdbc:mysql://localhost:3306/artesao";
     private static final String USER = "root";
-    private static final String PASSWORD = "12345";
+    private static final String PASSWORD = "FATEC";
 
     static Connection getConexao() throws MimosException {
         try {

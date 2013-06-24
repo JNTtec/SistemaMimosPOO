@@ -25,6 +25,7 @@ public class GeradorDeChave {
 	        }catch(SQLException ex){
 	            StringBuffer mensagem = new StringBuffer("Não foi possível "
 	                    + "desligar a confirmação automática");
+	            
 	            mensagem.append("\nMotivo: "+ ex.getMessage());
 	            throw new MimosException(mensagem.toString());
 	        }
@@ -42,8 +43,9 @@ public class GeradorDeChave {
 	        PreparedStatement stmt = null;
 	        ResultSet rs = null;
 	        long proximoCodigoNovo;
-	        String sql = "select  proximocodigo from chaves where tabela = ? "
+	        String sql = "select  proximocodigo from chave where tabela = ? "
 	                + "for update";
+	       
 	        try{
 	            stmt = con.prepareStatement(sql);
 	            stmt.setString(1, tabela);
@@ -51,6 +53,7 @@ public class GeradorDeChave {
 	            rs.next();
 	            proximoCodigoNovo = rs.getLong("proximoCodigo");
 	        }catch(SQLException ex){
+	        	 System.out.println("passou");
 	            StringBuffer mensagem = new StringBuffer("Não foi possível "
 	                    + "gerar o código");
 	            mensagem.append("\nMotivo: "+ex.getMessage());
@@ -58,9 +61,9 @@ public class GeradorDeChave {
 	        }long maximoCodigoNovo = proximoCodigoNovo + INCREMENTO;
 	        stmt = null;
 	        rs = null;
-	        
+	       
 	        try {
-	            sql = "UPDATE chaves SET proximoCodigo = ? WHERE tabela = ? ";
+	            sql = "UPDATE chave SET proximoCodigo = ? WHERE tabela = ? ";
 	            stmt = con.prepareStatement(sql);
 	            stmt.setLong(1, maximoCodigoNovo);
 	            stmt.setString(2, tabela);

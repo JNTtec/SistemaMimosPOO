@@ -4,6 +4,8 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 
+
+
 import mimos.modelo.Produto;
 public class ProdutoModel extends AbstractTableModel{
 	private final static String[] NOMES_COLUNAS = {"Código","Descrição", "Preco","Margem Lucro", "Preco Venda", "Quantidade"};
@@ -23,6 +25,9 @@ public class ProdutoModel extends AbstractTableModel{
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
 		return COLUNAS;
+	}
+	public Produto get(int linha) { 
+		return produto.get(linha);
 	}
 
 	@Override
