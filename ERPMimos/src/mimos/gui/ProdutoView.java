@@ -167,9 +167,13 @@ public class ProdutoView implements    ActionListener, ListSelectionListener {
 
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
+		System.out.println("passou");
 		ListSelectionModel lsm = (ListSelectionModel)e.getSource();
 		ProdutoModel atm = (ProdutoModel)tblDados.getModel();
 		Produto a = atm.get( lsm.getAnchorSelectionIndex() );
+		System.out.println( "Foi clicado na Tabela na posicao " + lsm.getAnchorSelectionIndex());
+
+
 		publishAlunoToView(a);
 	}
 

@@ -7,9 +7,9 @@ public class Produto {
 	private double precoVenda;
 	private double quantidade;
 	
-	private long codigoProd;
+	private long codigoProd=-1;
 	public long getCodigoProd() {
-		return codigoProd=-1;
+		return codigoProd;
 	}
 	public void setCodigoProd(long codigoProd) {
 		this.codigoProd = codigoProd;
