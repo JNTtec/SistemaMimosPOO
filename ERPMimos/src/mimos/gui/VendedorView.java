@@ -90,7 +90,8 @@ public class VendedorView extends JFrame implements ActionListener{
 		{
 			
 			
-		}
+		}else if ("SAIR".equalsIgnoreCase(cmd))
+			this.dispose();
 		
 	}
 

@@ -90,7 +90,8 @@ public class FuncionarioView extends JFrame implements ActionListener{
 		{
 			
 			
-		}
+		}else if ("SAIR".equalsIgnoreCase(cmd))
+			this.dispose();
 		
 	}
 

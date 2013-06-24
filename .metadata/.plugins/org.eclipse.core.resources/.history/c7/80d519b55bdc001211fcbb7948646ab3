@@ -1,0 +1,60 @@
+package mimos.gui;
+
+import java.util.List;
+
+import javax.swing.table.AbstractTableModel;
+
+import mimos.modelo.Cliente;
+
+
+public class clienteTableModel extends AbstractTableModel {
+
+	private static final long serialVersionUID = -118848275315309927L;
+	private List<Cliente> clientes;
+	private String[] columnNames = {"RA", "Nome", "Idade", "Nascimento", "Outra Coluna"};
+
+	public ClienteTableModel(List<Cliente> clientes) { 
+		this.clientes = clientes;
+	}
+	
+	public Aluno get(int linha) { 
+		return alunos.get(linha);
+	}
+	
+	@Override
+	public int getColumnCount() {
+		// TODO Auto-generated method stub
+		return columnNames.length;
+	}
+
+	@Override
+	public int getRowCount() {
+		// TODO Auto-generated method stub
+		return alunos.size();
+	}
+	
+	
+
+	@Override
+	public String getColumnName(int index) {
+		// TODO Auto-generated method stub
+		return columnNames[index];
+	}
+
+	@Override
+	public Object getValueAt(int linha, int coluna) {
+		Aluno a = alunos.get( linha );
+		Object o = "";
+		if (coluna == 0) { 
+			o = a.getRa();
+		} else if (coluna == 1) {
+			o = a.getNome();
+		} else if (coluna == 2) {
+			o = a.getIdade();
+		} else if (coluna == 3) {
+			o = a.getNascimento();
+		}
+		return o;
+	}
+
+}

@@ -94,7 +94,8 @@ public class EmpresaView extends JFrame implements ActionListener{
 		{
 			
 			
-		}
+		}else if ("SAIR".equalsIgnoreCase(cmd))
+			this.dispose();
 		
 	}
 

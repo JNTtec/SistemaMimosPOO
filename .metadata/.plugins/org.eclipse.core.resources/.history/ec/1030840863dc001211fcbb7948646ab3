@@ -1,0 +1,243 @@
+package mimos.gui;
+import mimos.*;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import mimos.constantes.Sexo;
+import mimos.controle.ClienteControle;
+import mimos.excecao.MimosException;
+import mimos.modelo.Cliente;
+import mimos.persistencia.ClienteDAO;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.text.DefaultEditorKit.PasteAction;
+
+import java.awt.Window.Type;
+import java.awt.GridLayout;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import javax.swing.ListSelectionModel;
+
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import javax.swing.SwingConstants;
+
+public class ClienteView extends JFrame implements ActionListener , ListSelectionListener{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private final JButton btnInserir = new JButton("Inserir");
+	private final JButton btnAtualizar = new JButton("Atualizar");
+	private final JButton btnRemover = new JButton("Remover");
+	private final JButton btnPesquisar = new JButton("Pesquisar");
+	private final JButton btnSair = new JButton("Sair");
+	private final JTextField txtNome = new JTextField();
+	private final JLabel lblNome = new JLabel("Nome:");
+	private  JLabel lblEndereco = new JLabel("Endere\u00E7o:");
+	private  JTextField txtEndereco = new JTextField();
+	private final JLabel lblTelefone = new JLabel("Telefone:");
+	private final JTextField txtTelefone = new JTextField();
+	private final JLabel lblCPF = new JLabel("CPF:");
+	private final JTextField txtCPF = new JTextField();
+	private final JLabel lblSexo = new JLabel("Sexo:");
+	private final JComboBox<Sexo> cmbSexo = new JComboBox<Sexo>() ;
+	private final JLabel lblDataNascimento = new JLabel("Data Nascimento:");
+	private final JTextField txtDataNascimento = new JTextField();
+	private final JLabel lblemail = new JLabel("Email:");
+	private final JTextField txtemail = new JTextField();
+	private final JLabel lblCodCliente = new JLabel("Cod:");
+	private final JTextField txtCodCliente = new JTextField();
+	private final JTable tabela = new JTable();
+	
+	
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					ClienteView frame = new ClienteView();
+					frame.setVisible(true);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public ClienteView() {
+		
+		ClienteControle ct = new ClienteControle();
+		tabela.getSelectionModel().addListSelectionListener( this );
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(350, 100, 540, 500);
+		contentPane = new JPanel();
+		contentPane.setLayout(new BorderLayout());
+		setContentPane(contentPane);
+		txtCodCliente.setEnabled(false);
+		
+		JPanel pnCampos = new JPanel();
+		lblNome.setHorizontalAlignment(SwingConstants.LEFT);
+		
+		contentPane.add(pnCampos, BorderLayout.NORTH);
+		pnCampos.setLayout(new GridLayout(8,2));
+		
+		contentPane.add(new JScrollPane(tabela), BorderLayout.CENTER);
+		
+		pnCampos.add(lblCodCliente);
+		pnCampos.add(txtCodCliente);
+		pnCampos.add(lblNome);
+		pnCampos.add(txtNome);
+		pnCampos.add(lblEndereco);
+		pnCampos.add(txtEndereco);
+		pnCampos.add(lblTelefone);
+		pnCampos.add(txtTelefone);
+		pnCampos.add(lblCPF);
+		pnCampos.add(txtCPF);
+		pnCampos.add(lblSexo);
+		pnCampos.add(cmbSexo);
+		pnCampos.add(lblDataNascimento);
+		pnCampos.add(txtDataNascimento);
+		pnCampos.add(lblemail);
+		pnCampos.add(txtemail);
+		
+	//	pnCampos.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNome, txtEndereco, lblEndereco, txtNome}));
+		
+		JPanel pnBotoes = new JPanel();
+		contentPane.add(pnBotoes, BorderLayout.SOUTH);
+		pnBotoes.setLayout(new GridLayout(1, 5));
+		
+		// Acao para os Botoes
+		btnInserir.addActionListener(this);
+		btnAtualizar.addActionListener(this);
+		btnRemover.addActionListener(this);
+		btnSair.addActionListener(this);
+		btnPesquisar.addActionListener(this);
+	
+		pnBotoes.add(btnInserir);		
+		pnBotoes.add(btnAtualizar);
+		pnBotoes.add(btnRemover);
+		pnBotoes.add(btnPesquisar);
+		pnBotoes.add(btnSair);
+			
+	
+		
+	}	@Override
+	public void actionPerformed(ActionEvent e) {
+		String cmd = e.getActionCommand();
+		if ("INSERIR".equalsIgnoreCase(cmd))
+		{
+			Cliente c = new Cliente();
+			c.setCod_cliente(Long.parseLong(txtCodCliente.getText()));
+			c.setNome( txtNome.getText() );
+			c.setEndereco(txtEndereco.getText());
+			c.setCpf(txtCPF.getText());
+			c.setSexo(cmbSexo.getSelectedItem().toString());
+			c.setEmail(txtemail.getText());
+			c.setTelefone(txtTelefone.getText());
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			try
+			{
+				c.setDataNascimento( sdf.parse(txtDataNascimento.getText()));
+	
+			}catch (ParseException ex){
+				
+				ex.getMessage();
+			}
+			
+			try {
+				ClienteControle ct = new ClienteControle();	
+				ct.adiciona(c);
+			} catch (MimosException ex) {
+				// TODO Auto-generated catch block
+				ex.printStackTrace();
+			}
+						
+		}else if ("PESQUISAR".equalsIgnoreCase(cmd))
+		{
+
+			ClienteControle ctp = new ClienteControle();
+			List<Cliente> clientes;
+			try {
+				clientes = ctp.realizaPesquisa(txtNome.getText());
+		
+			tabela.setModel(new ClienteTableModel( clientes ) );
+			tabela.repaint();
+			} catch (MimosException ex) {
+				// TODO Auto-generated catch block
+				ex.printStackTrace();
+			}	
+		}	
+		else if ("REMOVER".equalsIgnoreCase(cmd))
+		{
+			try {
+				ClienteControle ct = new ClienteControle();
+				Cliente c = new Cliente();
+				ct.excluirCliente(c);
+			} catch (MimosException ex) {
+				// TODO Auto-generated catch block
+				ex.printStackTrace();
+			}
+			
+		}else if ("SAIR".equalsIgnoreCase(cmd))
+			this.dispose();
+		
+		
+	}
+
+
+	public void publishAlunoToView(Cliente c) { 
+		txtCodCliente.setText( String.valueOf( c.getCod_cliente() ) );
+		txtNome.setText( c.getNome() );
+		txtEndereco.setText( String.valueOf( c.getEndereco() ) );
+		txtTelefone.setText( String.valueOf(c.getTelefone()));
+		txtCPF.setText( String.valueOf(c.getCpf()));
+		cmbSexo.setSelectedItem(String.valueOf(c.getSexo())); 
+		 //Acho que naum tah funcionando o combobox
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		txtDataNascimento.setText( sdf.format( c.getDataNascimento() ) );
+		txtemail.setText(String.valueOf(c.getEmail()));
+	}
+
+	
+		@Override
+	public void valueChanged(ListSelectionEvent e) {
+		ListSelectionModel lsm = (ListSelectionModel)e.getSource();
+//		System.out.println( "Foi clicado na Tabela na posicao " + lsm.getAnchorSelectionIndex());
+		
+		ClienteTableModel atm = (ClienteTableModel)tabela.getModel();
+		Cliente a = atm.get( lsm.getAnchorSelectionIndex() );
+		publishAlunoToView(a);
+		
+	}
+}
+	
+	
+	
+
+ 	

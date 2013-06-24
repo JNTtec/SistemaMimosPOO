@@ -6,17 +6,17 @@ public class Cliente{
 	private long cod_cliente;
 	private String telefone;
 	private String endereco;
-	private long id_empresa;
+	//private long id_empresa;
 	private String nome;
-	private Sexo sexo;
+	private String sexo;
 	private String cpf;
 	private java.util.Date dataNascimento;
 	private String email;
 	
-	public Sexo getSexo() {
+	public String getSexo() {
 		return sexo;
 	}
-	public void setSexo(Sexo sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
 	public String getCpf() {
@@ -62,10 +62,5 @@ public class Cliente{
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	public long getId_empresa() {
-		return id_empresa;
-	}
-	public void setId_empresa(long id_empresa) {
-		this.id_empresa = id_empresa;
-	}
+
 }

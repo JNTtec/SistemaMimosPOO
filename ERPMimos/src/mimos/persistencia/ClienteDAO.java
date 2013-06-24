@@ -40,7 +40,7 @@ public void alterarCliente(Cliente cliente) throws MimosException {
      stmt.setString(1, cliente.getNome());
      stmt.setString(2, cliente.getTelefone());
      stmt.setString(3, cliente.getEndereco());
-     stmt.setDouble(4, cliente.getId_empresa());
+    // stmt.setDouble(4, cliente.getId_empresa());
      stmt.setLong(5, cliente.getCod_cliente());
      stmt.executeUpdate();
      
@@ -96,7 +96,7 @@ public void incluirCliente (Cliente cliente) throws MimosException{
         stmt.setString (2 ,cliente.getNome());
         stmt.setString (3 ,cliente.getTelefone());
         stmt.setString (4 ,cliente.getEndereco());
-        stmt.setLong (5, cliente.getId_empresa());
+    //    stmt.setLong (5, cliente.getId_empresa());
         stmt.executeUpdate();
         
     }
@@ -138,7 +138,7 @@ private Cliente criarCliente(ResultSet rs)throws MimosException {
         cliente.setNome(rs.getString("NOME"));
         cliente.setTelefone(rs.getString("TELEFONE"));
         cliente.setEndereco(rs.getString("ENDERECO"));
-        cliente.setId_empresa(rs.getLong("ID_EMPRESA"));        
+    //    cliente.setId_empresa(rs.getLong("ID_EMPRESA"));        
        }
        catch (SQLException exe){
            StringBuffer mensagem = new StringBuffer("Não foi possível obter os dados do cliente");

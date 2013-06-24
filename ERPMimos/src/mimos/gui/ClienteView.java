@@ -1,27 +1,48 @@
 package mimos.gui;
-
+import mimos.*;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+
+import mimos.constantes.Sexo;
+import mimos.controle.ClienteControle;
+import mimos.controle.MandarMensagem;
+import mimos.excecao.MimosException;
 import mimos.modelo.Cliente;
 import mimos.persistencia.ClienteDAO;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.text.DefaultEditorKit.PasteAction;
 
 import java.awt.Window.Type;
 import java.awt.GridLayout;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.ListSelectionModel;
 
-public class ClienteView extends JFrame implements ActionListener{
+import org.eclipse.wb.swing.FocusTraversalOnArray;
+import org.omg.CORBA.Environment;
+
+import javax.swing.SwingConstants;
+
+public class ClienteView extends JFrame implements ActionListener , ListSelectionListener{
 
 	/**
 	 * 
@@ -37,7 +58,24 @@ public class ClienteView extends JFrame implements ActionListener{
 	private final JLabel lblNome = new JLabel("Nome:");
 	private  JLabel lblEndereco = new JLabel("Endere\u00E7o:");
 	private  JTextField txtEndereco = new JTextField();
-
+	private final JLabel lblTelefone = new JLabel("Telefone:");
+	private final JTextField txtTelefone = new JTextField();
+	private final JLabel lblCPF = new JLabel("CPF:");
+	private final JTextField txtCPF = new JTextField();
+	private final JLabel lblSexo = new JLabel("Sexo:");
+	
+	private final DefaultComboBoxModel cmbSexoModel = new DefaultComboBoxModel(Sexo.values()); 
+	private JComboBox<Sexo> cmbSexo;
+	
+	private final JLabel lblDataNascimento = new JLabel("Data Nascimento:");
+	private final JTextField txtDataNascimento = new JTextField();
+	private final JLabel lblemail = new JLabel("Email:");
+	private final JTextField txtemail = new JTextField();
+	private final JLabel lblCodCliente = new JLabel("Cod:");
+	private final JTextField txtCodCliente = new JTextField();
+	private final JTable tabela = new JTable();
+	public MandarMensagem m = new MandarMensagem();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -59,22 +97,50 @@ public class ClienteView extends JFrame implements ActionListener{
 	 * Create the frame.
 	 */
 	public ClienteView() {
+		
+		ClienteControle ct = new ClienteControle();
+		tabela.getSelectionModel().addListSelectionListener( this );
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(350, 100, 540, 650);
+		setBounds(350, 100, 540, 500);
 		contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout());
 		setContentPane(contentPane);
+		txtCodCliente.setEnabled(false);
 		
 		JPanel pnCampos = new JPanel();
+		lblNome.setHorizontalAlignment(SwingConstants.LEFT);
 		
+		contentPane.add(pnCampos, BorderLayout.NORTH);
+		pnCampos.setLayout(new GridLayout(8,2));
+		
+		contentPane.add(new JScrollPane(tabela), BorderLayout.CENTER);
+		
+		cmbSexo = new JComboBox<Sexo>() ;
+		cmbSexo.setModel(cmbSexoModel);
+		
+		pnCampos.add(lblCodCliente);
+		pnCampos.add(txtCodCliente);
 		pnCampos.add(lblNome);
 		pnCampos.add(txtNome);
 		pnCampos.add(lblEndereco);
 		pnCampos.add(txtEndereco);
-
+		pnCampos.add(lblTelefone);
+		pnCampos.add(txtTelefone);
+		pnCampos.add(lblCPF);
+		pnCampos.add(txtCPF);
+		pnCampos.add(lblSexo);
+		pnCampos.add(cmbSexo);
+		pnCampos.add(lblDataNascimento);
+		pnCampos.add(txtDataNascimento);
+		pnCampos.add(lblemail);
+		pnCampos.add(txtemail);
 		
+<<<<<<< HEAD
 		contentPane.add(pnCampos, BorderLayout.NORTH);
 		pnCampos.setLayout(new GridLayout(2,2));
+=======
+	//	pnCampos.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{lblNome, txtEndereco, lblEndereco, txtNome}));
+>>>>>>> Criando view cliente e Classe de envio de mensagens
 		
 		JPanel pnBotoes = new JPanel();
 		contentPane.add(pnBotoes, BorderLayout.SOUTH);
@@ -101,28 +167,95 @@ public class ClienteView extends JFrame implements ActionListener{
 		if ("INSERIR".equalsIgnoreCase(cmd))
 		{
 			Cliente c = new Cliente();
-//			c.setCod_cliente(Int.parseInt( txtRA.getText() ) );
-//			a.setNome( txtNome.getText() );
-//			a.setIdade( Integer.parseInt( txtIdade.getText() ) );
-//			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-//			
+			//c.setCod_cliente(Long.parseLong(txtCodCliente.getText()));
+			c.setNome( txtNome.getText() );
+			c.setEndereco(txtEndereco.getText());
+			c.setCpf(txtCPF.getText());
+			c.setSexo(cmbSexo.getSelectedItem().toString());
+			c.setEmail(txtemail.getText());
+			c.setTelefone(txtTelefone.getText());
 			
-		}
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			try
+			{
+				c.setDataNascimento( sdf.parse(txtDataNascimento.getText()));
+	
+			}catch (ParseException ex){
+				
+				ex.getMessage();
+			}
+			
+			try {
+				ClienteControle ct = new ClienteControle();	
+				ct.adiciona(c);
+			} catch (MimosException ex) {
+				// TODO Auto-generated catch block
+				ex.printStackTrace();
+			}
+						
+		}else if ("PESQUISAR".equalsIgnoreCase(cmd))
+		{
+
+			ClienteControle ctp = new ClienteControle();
+			List<Cliente> clientes;
+			try {
+				if (txtNome.getText() != ""){
+				clientes = ctp.realizaPesquisa(txtNome.getText());
+		
+			tabela.setModel(new ClienteTableModel( clientes ) );
+			tabela.repaint();
+			}
+				else
+					m.enviarMensagem("O campo Nome não pode estar vazio", "Erro Pesquisa" , 1);
+				
+			} catch (MimosException ex) {
+				// TODO Auto-generated catch block
+				ex.printStackTrace();
+			}
+		}	
+		else if ("REMOVER".equalsIgnoreCase(cmd))
+		{
+			try {
+				ClienteControle ct = new ClienteControle();
+				Cliente c = new Cliente();
+				ct.excluirCliente(c);
+			} catch (MimosException ex) {
+				// TODO Auto-generated catch block
+				ex.printStackTrace();
+			}
+			
+		}else if ("SAIR".equalsIgnoreCase(cmd))
+			this.dispose();
+		
 		
 	}
 
 
-	
-	//	@Override
-//	public void valueChanged(ListSelectionEvent e) {
-//		ListSelectionModel lsm = (ListSelectionModel)e.getSource();
-////		System.out.println( "Foi clicado na Tabela na posicao " + lsm.getAnchorSelectionIndex());
-//		
-//		AlunoTableModel atm = (AlunoTableModel)tabela.getModel();
-//		Aluno a = atm.get( lsm.getAnchorSelectionIndex() );
-//		publishAlunoToView(a);
-//		
+	public void publishAlunoToView(Cliente c) { 
+		txtCodCliente.setText( String.valueOf( c.getCod_cliente() ) );
+		txtNome.setText( c.getNome() );
+		txtEndereco.setText( String.valueOf( c.getEndereco() ) );
+		txtTelefone.setText( String.valueOf(c.getTelefone()));
+		txtCPF.setText( String.valueOf(c.getCpf()));
+		cmbSexo.setSelectedItem(String.valueOf(c.getSexo())); 
+		 //Acho que naum tah funcionando o combobox
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		txtDataNascimento.setText( sdf.format( c.getDataNascimento() ) );
+		txtemail.setText(String.valueOf(c.getEmail()));
 	}
+
+	
+		@Override
+	public void valueChanged(ListSelectionEvent e) {
+		ListSelectionModel lsm = (ListSelectionModel)e.getSource();
+//		System.out.println( "Foi clicado na Tabela na posicao " + lsm.getAnchorSelectionIndex());
+		
+		ClienteTableModel atm = (ClienteTableModel)tabela.getModel();
+		Cliente a = atm.get( lsm.getAnchorSelectionIndex() );
+		publishAlunoToView(a);
+		
+	}
+}
 	
 	
 	

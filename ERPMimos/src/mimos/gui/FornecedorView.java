@@ -94,7 +94,8 @@ public class FornecedorView extends JFrame implements ActionListener{
 		{
 			
 			
-		}
+		}else if ("SAIR".equalsIgnoreCase(cmd))
+			this.dispose();
 		
 	}
 
