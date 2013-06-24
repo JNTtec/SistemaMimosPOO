@@ -25,7 +25,7 @@ private static final String SQL_ALTERARCLIENTE = "UPDATE cliente set "
 +"id_empresa=? "
 +"where cod_cliente=?";
 private static final String SQL_EXCLUIRCLIENTE =  
-"Delete artesao where cod_cliente = ?";
+"Delete cliente where cod_cliente = ?";
 
 public void alterarCliente(Cliente cliente) throws MimosException {
  if (cliente == null){

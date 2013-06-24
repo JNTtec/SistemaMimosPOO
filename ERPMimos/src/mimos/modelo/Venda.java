@@ -11,6 +11,13 @@ public class Venda {
 	private String status;
 	private	Date data_venda;
 	private long cod_produto;
+	private double valor_pago;
+	public double getValor_pago() {
+		return valor_pago;
+	}
+	public void setValor_pago(double valor_pago) {
+		this.valor_pago = valor_pago;
+	}
 	public long getVenda() {
 		return venda;
 	}
