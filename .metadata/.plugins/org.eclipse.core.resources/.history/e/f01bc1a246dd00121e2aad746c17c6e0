@@ -162,10 +162,7 @@ public class Principal extends JFrame implements ActionListener {
 //	sobre.setVisible(true);
 //		
 //
-		}	else if("Sair".equalsIgnoreCase(cmd)){
-			System.exit(0);
-			
-		}
+		}	
 	}
 
 	

@@ -51,21 +51,21 @@ public class Principal extends JFrame implements ActionListener {
 		JMenu mnRecursos = new JMenu("Recursos");
 		menuBar.add(mnRecursos);
 		
-		JMenuItem mnFuncionrios = new JMenuItem("Funcionário");
+		JMenu mnFuncionrios = new JMenu("Funcionário");
 		
 //		mnFuncionrios.setActionCommand("Funcionário");
 		mnRecursos.add(mnFuncionrios);
 		
-		JMenuItem mnCliente = new JMenuItem("Cliente");
+		JMenu mnCliente = new JMenu("Cliente");
 		mnRecursos.add(mnCliente);
 		
-		JMenuItem mnArteso = new JMenuItem("Artesão");
+		JMenu mnArteso = new JMenu("Artesão");
 		mnRecursos.add(mnArteso);
 		
-		JMenuItem mnVendedor = new JMenuItem("Vendedor");
+		JMenu mnVendedor = new JMenu("Vendedor");
 		mnRecursos.add(mnVendedor);
 		
-		JMenuItem mnFornecedor = new JMenuItem("Fornecedor");
+		JMenu mnFornecedor = new JMenu("Fornecedor");
 		mnRecursos.add(mnFornecedor);
 		
 		
@@ -75,22 +75,21 @@ public class Principal extends JFrame implements ActionListener {
 		JMenu mnControle = new JMenu("Controle");
 		menuBar.add(mnControle);
 		
-		JMenuItem mnEmpresa = new JMenuItem("Empresa");
+		JMenu mnEmpresa = new JMenu("Empresa");
 		mnControle.add(mnEmpresa);
 		
 		JMenu mnAtivos = new JMenu("Ativos");
 		menuBar.add(mnAtivos);
 		
-		JMenuItem mnProduto = new JMenuItem("Produto");
+		JMenu mnProduto = new JMenu("Produto");
 		mnAtivos.add(mnProduto);
 		
 		JMenu mnAjuda = new JMenu("Ajuda");
 		menuBar.add(mnAjuda);
 		
-		JMenuItem mnSair = new JMenuItem("Sair");
 		JMenuItem mnSobre = new JMenuItem("Sobre");
 		mnAjuda.add(mnSobre);
-		mnAjuda.add(mnSair);
+		
 
 		mnEmpresa.addActionListener(this);
 		mnArteso.addActionListener(this);
@@ -100,7 +99,7 @@ public class Principal extends JFrame implements ActionListener {
 		mnProduto.addActionListener(this);
 		mnVendedor.addActionListener(this);
 		mnSobre.addActionListener(this);
-		mnSair.addActionListener(this);
+		
 			
 		contentPane = new JPanel();
 		contentPane.setLayout(new BorderLayout());
@@ -109,63 +108,66 @@ public class Principal extends JFrame implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {	
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+		
 		MandarMensagem m = new MandarMensagem();
-		String cmd = e.getActionCommand();
-		 
-		if("Empresa".equalsIgnoreCase(cmd))
-		{
-			EmpresaView empresa = new EmpresaView();
-			//this.setExtendedState(ICONIFIED);
-			
-		}else if ("Funcionário".equalsIgnoreCase(cmd))
-		{
-			FuncionarioView funcionario = new FuncionarioView();
-			funcionario.setVisible(true);
-			//this.setExtendedState(ICONIFIED);
-					
-			
-		}else if ("Vendedor".equalsIgnoreCase(cmd))
-		{
-			VendedorView vendedor = new VendedorView();
-			vendedor.setVisible(true);
-			//this.setExtendedState(ICONIFIED);
-			
-		}else if ("Cliente".equalsIgnoreCase(cmd))
-		{
-			ClienteView cliente = new ClienteView();
-			cliente.setVisible(true);
-			//this.setExtendedState(ICONIFIED);
-			
-			
-		}else if ("Produto".equalsIgnoreCase(cmd))
-		{
-			
-			ProdutoView produto = new ProdutoView();
-			//this.setExtendedState(ICONIFIED);
-			
-		}else if ("Artesão".equalsIgnoreCase(cmd))
-		{
-			ArtesaoView artesao = new ArtesaoView();
-			artesao.setVisible(true);
-			//this.setExtendedState(ICONIFIED);
-			
-		}else if ("Fornecedor".equalsIgnoreCase(cmd))
-		{
-			FornecedorView fornecedor = new FornecedorView();
-			fornecedor.setVisible(true);
-			//this.setExtendedState(ICONIFIED);
-			
-		}else if("Sobre".equalsIgnoreCase(cmd)){
-//		m.enviarMensagem("Oie");
-			Sobre sobre = new Sobre();
-//	sobre.setVisible(true);
-//		
-//
-		}	else if("Sair".equalsIgnoreCase(cmd)){
-			System.exit(0);
-			
-		}
+		m.enviarMensagem("Chamo Envento");
+//		if(e.getSource() == "Sobre"){
+//			m.enviarMensagem("OIrr");
+//		}
+//		String cmd = e.getActionCommand();
+//		if("Sobre".equalsIgnoreCase("Sobre")){
+//			m.enviarMensagem("Oie");
+//			Sobre sobre = new Sobre();
+//			sobre.setVisible(true);
+//			
+//		}else if("Empresa".equalsIgnoreCase(cmd))
+//		{
+//			EmpresaView empresa = new EmpresaView();
+////			empresa.setVisible(true);
+//			this.hide();
+//		}else if ("Funcionário".equalsIgnoreCase(cmd))
+//		{
+//			FuncionarioView funcionario = new FuncionarioView();
+//			funcionario.setVisible(true);
+//			this.hide();
+//			
+//			
+//		}else if ("Vendedor".equalsIgnoreCase(cmd))
+//		{
+//			VendedorView vendedor = new VendedorView();
+//			vendedor.setVisible(true);
+//			this.hide();
+//			
+//		}else if ("Cliente".equalsIgnoreCase(cmd))
+//		{
+//			ClienteView cliente = new ClienteView();
+//			cliente.setVisible(true);
+//			this.hide();
+//			
+//			
+//		}else if ("Produto".equalsIgnoreCase(cmd))
+//		{
+//			
+//			ProdutoView produto = new ProdutoView();
+//			this.hide();
+//			
+//		}else if ("Artesão".equalsIgnoreCase(cmd))
+//		{
+//			ArtesaoView artesao = new ArtesaoView();
+//			artesao.setVisible(true);
+//			this.hide();
+//			
+//		}else if ("Fornecedor".equalsIgnoreCase(cmd))
+//		{
+//			FornecedorView fornecedor = new FornecedorView();
+//			fornecedor.setVisible(true);
+//			this.hide();
+//			
+//		}
+		
 	}
 
 	

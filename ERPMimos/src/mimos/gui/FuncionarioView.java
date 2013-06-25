@@ -53,6 +53,7 @@ public class FuncionarioView extends JFrame implements ActionListener{
 	 * Create the frame.
 	 */
 	public FuncionarioView() {
+		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(350, 100, 540, 650);
 		contentPane = new JPanel();

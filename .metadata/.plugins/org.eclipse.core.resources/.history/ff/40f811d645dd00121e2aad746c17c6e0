@@ -2,13 +2,9 @@ package mimos.gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import mimos.modelo.Artesao;
 import mimos.modelo.Cliente;
-import mimos.modelo.Fornecedor;
-import mimos.persistencia.ArtesaoDAO;
+import mimos.modelo.Funcionario;
 import mimos.persistencia.ClienteDAO;
-import mimos.persistencia.FornecedorDAO;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -24,7 +20,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 
-public class FornecedorView extends JFrame implements ActionListener{
+public class VendedorView extends JFrame implements ActionListener{
 
 	/**
 	 * 
@@ -44,7 +40,7 @@ public class FornecedorView extends JFrame implements ActionListener{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FornecedorView frame = new FornecedorView();
+					VendedorView frame = new VendedorView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +52,7 @@ public class FornecedorView extends JFrame implements ActionListener{
 	/**
 	 * Create the frame.
 	 */
-	public FornecedorView() {
+	public VendedorView() {
 		setAlwaysOnTop(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(350, 100, 540, 650);
@@ -85,7 +81,7 @@ public class FornecedorView extends JFrame implements ActionListener{
 		pnBotoes.add(btnRemover);
 		pnBotoes.add(btnPesquisar);
 		pnBotoes.add(btnSair);
-		
+		this.
 	}
 
 	@Override
@@ -100,6 +96,38 @@ public class FornecedorView extends JFrame implements ActionListener{
 		
 	}
 
+//	public List<Funcionario> pesquisar(String nome) {
+//		FuncionarioDAO aDao = new FuncionarioDao();
+//		List<Funcionario> funcionarioArray = new ArrayList<Funcionario>();
+//		try {
+//			funcionarioArray = aDao.pesquisar(nome );
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return funcionarioArray;
+//	}
+//	
+//	
+//	public void inserir(Vendedor v) {
+//		ClienteDAO cDao = new ClienteDAO();
+//		try {
+//			cDao.incluirCliente(c);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+
+	
+		public void atualizar(Funcionario c) {
+		// TODO Auto-generated method stub
+
+	}
+
+	
+	public void remover(Funcionario c) {
+		// TODO Auto-generated method stub
+
+	}
 
 	
 	//	@Override

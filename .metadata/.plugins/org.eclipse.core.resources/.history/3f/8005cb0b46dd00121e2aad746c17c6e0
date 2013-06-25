@@ -2,13 +2,9 @@ package mimos.gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
-import mimos.modelo.Artesao;
 import mimos.modelo.Cliente;
-import mimos.modelo.Fornecedor;
-import mimos.persistencia.ArtesaoDAO;
+import mimos.modelo.Funcionario;
 import mimos.persistencia.ClienteDAO;
-import mimos.persistencia.FornecedorDAO;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -24,7 +20,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 
-public class FornecedorView extends JFrame implements ActionListener{
+public class FuncionarioView extends JFrame implements ActionListener{
 
 	/**
 	 * 
@@ -44,7 +40,7 @@ public class FornecedorView extends JFrame implements ActionListener{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FornecedorView frame = new FornecedorView();
+					FuncionarioView frame = new FuncionarioView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,8 +52,7 @@ public class FornecedorView extends JFrame implements ActionListener{
 	/**
 	 * Create the frame.
 	 */
-	public FornecedorView() {
-		setAlwaysOnTop(true);
+	public FuncionarioView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(350, 100, 540, 650);
 		contentPane = new JPanel();
@@ -101,7 +96,6 @@ public class FornecedorView extends JFrame implements ActionListener{
 	}
 
 
-	
 	//	@Override
 //	public void valueChanged(ListSelectionEvent e) {
 //		ListSelectionModel lsm = (ListSelectionModel)e.getSource();

@@ -156,16 +156,14 @@ public class Principal extends JFrame implements ActionListener {
 			fornecedor.setVisible(true);
 			//this.setExtendedState(ICONIFIED);
 			
-		}else if("Sobre".equalsIgnoreCase(cmd)){
+		}
+//		if("Sobre".equalsIgnoreCase(cmd)){
 //		m.enviarMensagem("Oie");
-			Sobre sobre = new Sobre();
+//		Sobre sobre = new Sobre();
 //	sobre.setVisible(true);
 //		
 //
-		}	else if("Sair".equalsIgnoreCase(cmd)){
-			System.exit(0);
-			
-		}
+		
 	}
 
 	

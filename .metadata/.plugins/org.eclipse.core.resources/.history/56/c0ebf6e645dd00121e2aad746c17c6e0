@@ -50,7 +50,6 @@ public class ProdutoView implements    ActionListener, ListSelectionListener {
 	private ProdutoControle produtocont;
 	public ProdutoView(){
 		janela=new JFrame("Cadastro de Produtos");
-		janela.setAlwaysOnTop(true);
 		produto = new ArrayList<Produto>();
 		panDetalhes = new JPanel();
 		panPrincipal = new JPanel();

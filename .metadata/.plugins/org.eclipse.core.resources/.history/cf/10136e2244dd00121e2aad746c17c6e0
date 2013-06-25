@@ -97,7 +97,6 @@ public class ClienteView extends JFrame implements ActionListener , ListSelectio
 	 * Create the frame.
 	 */
 	public ClienteView() {
-		setAlwaysOnTop(true);
 		
 		ClienteControle ct = new ClienteControle();
 		tabela.getSelectionModel().addListSelectionListener( this );
@@ -223,8 +222,7 @@ public class ClienteView extends JFrame implements ActionListener , ListSelectio
 			
 		}else if ("SAIR".equalsIgnoreCase(cmd))
 			this.dispose();
-			Principal p = new Principal();
-			
+			super.setExtendedState(MAXIMIZED_BOTH);
 	}
 
 
