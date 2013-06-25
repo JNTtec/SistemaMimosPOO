@@ -5,13 +5,14 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 import mimos.modelo.Cliente;
+import mimos.modelo.Produto;
 
 
 public class ClienteTableModel extends AbstractTableModel {
 
 	private static final long serialVersionUID = -118848275315309927L;
 	private List<Cliente> clientes;
-	private final static String[] columnNames = {"COD", "NOME", "ENDEREÇO", "TELEFONE", "CPF","SEXO" , "DATA NASCIMENTO","EMAIL"};
+	private final static String[] NomeColunas = {"COD", "NOME", "ENDEREÇO", "TELEFONE", "CPF","SEXO" , "DATA NASCIMENTO","EMAIL"};
 
 	public ClienteTableModel(List<Cliente> clientes) { 
 		this.clientes = clientes;
@@ -24,7 +25,7 @@ public class ClienteTableModel extends AbstractTableModel {
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return columnNames.length;
+		return NomeColunas.length;
 	}
 
 	@Override
@@ -38,7 +39,7 @@ public class ClienteTableModel extends AbstractTableModel {
 	@Override
 	public String getColumnName(int index) {
 		// TODO Auto-generated method stub
-		return columnNames[index];
+		return NomeColunas[index];
 	}
 
 	@Override
@@ -65,5 +66,15 @@ public class ClienteTableModel extends AbstractTableModel {
 		
 		return o;
 	}
+	
+	
+	public List<Cliente> getCliente() {
+		return clientes;
+	}
+	public void setCliente(List<Cliente> cliente) {
+		this.clientes=cliente;
+	}
+	
+	
 
 }

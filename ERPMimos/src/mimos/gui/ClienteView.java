@@ -37,8 +37,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.ListSelectionModel;
 
-import org.eclipse.wb.swing.FocusTraversalOnArray;
-import org.omg.CORBA.Environment;
+
 
 import javax.swing.SwingConstants;
 
@@ -75,6 +74,7 @@ public class ClienteView extends JFrame implements ActionListener , ListSelectio
 	private final JTextField txtCodCliente = new JTextField();
 	private final JTable tabela = new JTable();
 	public MandarMensagem m = new MandarMensagem();
+	private ClienteTableModel ClienteModel;
 	
 	/**
 	 * Launch the application.
@@ -162,6 +162,8 @@ public class ClienteView extends JFrame implements ActionListener , ListSelectio
 	}	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
+		ClienteControle ct = new ClienteControle();	
+		
 		if ("INSERIR".equalsIgnoreCase(cmd))
 		{
 			Cliente c = new Cliente();
@@ -184,8 +186,7 @@ public class ClienteView extends JFrame implements ActionListener , ListSelectio
 			}
 			
 			try {
-				ClienteControle ct = new ClienteControle();	
-				ct.adiciona(c);
+					ct.adiciona(c);
 			} catch (MimosException ex) {
 				// TODO Auto-generated catch block
 				ex.printStackTrace();
@@ -193,17 +194,15 @@ public class ClienteView extends JFrame implements ActionListener , ListSelectio
 						
 		}else if ("PESQUISAR".equalsIgnoreCase(cmd))
 		{
-
-			ClienteControle ctp = new ClienteControle();
 			List<Cliente> clientes;
 			try {
 				if (txtNome.getText() != ""){
-				clientes = ctp.realizaPesquisa(txtNome.getText());
-		
-			tabela.setModel(new ClienteTableModel( clientes ) );
-			tabela.repaint();
-			}
-				else
+					clientes = ct.realizaPesquisa(txtNome.getText());
+					tabela.setModel(new ClienteTableModel( clientes ) );
+					tabela.repaint();
+					ClienteModel.setCliente(clientes);
+					
+			}else
 					m.enviarMensagem("O campo Nome não pode estar vazio", "Erro Pesquisa" , 1);
 				
 			} catch (MimosException ex) {
@@ -214,7 +213,6 @@ public class ClienteView extends JFrame implements ActionListener , ListSelectio
 		else if ("REMOVER".equalsIgnoreCase(cmd))
 		{
 			try {
-				ClienteControle ct = new ClienteControle();
 				Cliente c = new Cliente();
 				ct.excluirCliente(c);
 			} catch (MimosException ex) {
@@ -236,7 +234,7 @@ public class ClienteView extends JFrame implements ActionListener , ListSelectio
 		txtTelefone.setText( String.valueOf(c.getTelefone()));
 		txtCPF.setText( String.valueOf(c.getCpf()));
 		cmbSexo.setSelectedItem(String.valueOf(c.getSexo())); 
-		 //Acho que naum tah funcionando o combobox
+		 //ver se tah funcionando o combobox
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		txtDataNascimento.setText( sdf.format( c.getDataNascimento() ) );
 		txtemail.setText(String.valueOf(c.getEmail()));

@@ -1,0 +1,111 @@
+package mimos.gui;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Frame;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+
+public class Principal extends JFrame implements ActionListener {
+
+	private JPanel contentPane;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Principal frame = new Principal();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Principal() {
+		setTitle("Principal");
+		setExtendedState(Frame.MAXIMIZED_BOTH);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnRecursos = new JMenu("Recursos");
+		menuBar.add(mnRecursos);
+		
+		JMenu mnFuncionrios = new JMenu("Funcion\u00E1rio");
+		mnFuncionrios.setActionCommand("Funcion\u00E1rio");
+		mnRecursos.add(mnFuncionrios);
+		
+		JMenu mnCliente = new JMenu("Cliente");
+		mnRecursos.add(mnCliente);
+		
+		JMenu mnArteso = new JMenu("Artes\u00E3o");
+		mnRecursos.add(mnArteso);
+		
+		JMenu mnVendedor = new JMenu("Vendedor");
+		mnRecursos.add(mnVendedor);
+		
+		JMenu mnFornecedor = new JMenu("Fornecedor");
+		mnRecursos.add(mnFornecedor);
+		
+		JMenu menu = new JMenu("");
+		menuBar.add(menu);
+		
+		JMenu mnControle = new JMenu("Controle");
+		menuBar.add(mnControle);
+		
+		JMenu mnEmpresa = new JMenu("Empresa");
+		mnControle.add(mnEmpresa);
+		
+		JMenu mnAtivos = new JMenu("Ativos");
+		menuBar.add(mnAtivos);
+		
+		JMenu mnProduto = new JMenu("Produto");
+		mnAtivos.add(mnProduto);
+		
+		JMenu mnAjuda = new JMenu("Ajuda");
+		menuBar.add(mnAjuda);
+		
+		JMenu mnSobre = new JMenu("Sobre");
+		mnAjuda.add(mnSobre);
+		contentPane = new JPanel();
+		contentPane.setMaximumSize(new Dimension(32780, 32774));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
+		mnAjuda.addActionListener(this);
+	
+	
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		String cmd = e.getActionCommand();
+		if("AJUDA".equalsIgnoreCase(cmd)){
+			Sobre s= new Sobre();
+			
+		}
+	
+	
+	
+	}
+
+}
