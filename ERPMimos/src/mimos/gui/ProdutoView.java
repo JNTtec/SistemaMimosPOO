@@ -37,6 +37,7 @@ public class ProdutoView implements    ActionListener, ListSelectionListener {
 	private JButton btnRemover;
 	private JButton btnPesquisar;
 	
+	private JTextField txtCodigo;
 	private JTextField txtDescricao;
 	private JTextField txtPreco;
 	private JTextField txtMargemLucro;
@@ -68,13 +69,17 @@ public class ProdutoView implements    ActionListener, ListSelectionListener {
 		panSouth.add(btnRemover);
 		panSouth.add(btnPesquisar);
 		
+		txtCodigo = new JTextField(2);
 		txtDescricao = new JTextField(10);
 		txtPreco = new JTextField(100);
 		txtMargemLucro = new JTextField(30);
 		txtPrecoVenda = new JTextField(100);
 		txtQuantidade = new JTextField(50);
+		
 	
 		panDetalhes.setLayout(new GridLayout(6, 2) );
+		panDetalhes.add(new JLabel("Código: "));
+		panDetalhes.add(txtCodigo);
 		panDetalhes.add(new JLabel("Descrição: "));
 		panDetalhes.add(txtDescricao);
 		panDetalhes.add(new JLabel("Preço: "));
@@ -88,6 +93,7 @@ public class ProdutoView implements    ActionListener, ListSelectionListener {
 
 		modeloProduto = new ProdutoModel( produto );
 		tblDados = new JTable(modeloProduto);
+		tblDados.getSelectionModel().addListSelectionListener( this );
 		
 		panPrincipal.setLayout( new BorderLayout() );
 		panPrincipal.add(panSouth, BorderLayout.SOUTH);
@@ -109,6 +115,17 @@ public class ProdutoView implements    ActionListener, ListSelectionListener {
 		produto.setQuantidade( Double.parseDouble(txtQuantidade.getText()) );
 		return produto;
 	}
+	public Produto telaToProduto2() {
+		Produto produto = new Produto();
+		produto.setCodigoProd(Long.parseLong(txtCodigo.getText()));
+		produto.setDescricao( txtDescricao.getText() );
+		produto.setPreco( Double.parseDouble(txtPreco.getText()) );
+		produto.setMargemLucro( Double.parseDouble(txtMargemLucro.getText()) );
+		produto.setPrecoVenda(Double.parseDouble(txtPrecoVenda.getText()));
+		produto.setQuantidade( Double.parseDouble(txtQuantidade.getText()) );
+		return produto;
+	}
+
 
 	
 	private ProdutoDAO produtoDAO;
@@ -127,14 +144,14 @@ public class ProdutoView implements    ActionListener, ListSelectionListener {
 			}
 		} else if ("ATUALIZAR".equalsIgnoreCase( cmd )) {
 			try{
-			prod.alterarProduto(telaToProduto());
+			prod.alterarProduto(telaToProduto2());
 			}
 			catch(MimosException ex){
 				System.out.println(ex.getMessage());
 			}
 		} else if ("REMOVER".equalsIgnoreCase( cmd )) {
 			try{
-			prod.excluirProduto(telaToProduto());
+			prod.excluirProduto(telaToProduto2());
 			}
 			catch(MimosException ex){
 				System.out.println(ex.getMessage());
@@ -154,6 +171,7 @@ public class ProdutoView implements    ActionListener, ListSelectionListener {
 		
 	}
 	public void publishAlunoToView(Produto a) { 
+		txtCodigo.setText(String.valueOf(a.getCodigoProd()));
 		txtDescricao.setText( a.getDescricao() );
 		txtPreco.setText( String.valueOf(a.getPreco() ));
 		txtMargemLucro.setText( String.valueOf( a.getMargemLucro() ) );
@@ -166,15 +184,16 @@ public class ProdutoView implements    ActionListener, ListSelectionListener {
 	}
 
 	@Override
-	public void valueChanged(ListSelectionEvent e) {
-		System.out.println("passou");
-		ListSelectionModel lsm = (ListSelectionModel)e.getSource();
+	public void valueChanged(ListSelectionEvent a) {
+		ListSelectionModel lsm = (ListSelectionModel)a.getSource();
 		ProdutoModel atm = (ProdutoModel)tblDados.getModel();
-		Produto a = atm.get( lsm.getAnchorSelectionIndex() );
+		Produto p = atm.get( lsm.getAnchorSelectionIndex() );
 		System.out.println( "Foi clicado na Tabela na posicao " + lsm.getAnchorSelectionIndex());
 
 
-		publishAlunoToView(a);
+		publishAlunoToView(p);
+	}
+		
 	}
 
-}
+

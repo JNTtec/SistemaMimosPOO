@@ -18,9 +18,8 @@ public class ProdutoDAO {
              " values (?,?,?,?,?,?)";
     private static final String SQL_ALTERARPRODUTO = "UPDATE produto set "
     		+"descricao=?,preco=?,margem_lucro_perc=?,preco_venda=?,quantidade=?"
-    		+"where cod_produto=?";
-    private static final String SQL_EXCLUIRPRODUTO =  
-    		"Delete produto where cod_produto= ?";
+    		+"where cod_produto = ?";
+    private static final String SQL_EXCLUIRPRODUTO = "Delete from produto where cod_produto = ?";
     public void alterarProduto(Produto produto) throws MimosException {
    	 if (produto == null){
    	 String mensagem = "Não foi informado o produto a ser alterado";
@@ -36,6 +35,7 @@ public class ProdutoDAO {
    	     stmt.setDouble(3, produto.getMargemLucro());
    	     stmt.setDouble(4, produto.getPrecoVenda());
    	     stmt.setDouble(5, produto.getQuantidade());
+   	     stmt.setDouble(6, produto.getCodigoProd());
    	     stmt.executeUpdate();
    	     
    	     }catch(SQLException ex){
@@ -45,6 +45,7 @@ public class ProdutoDAO {
    	         throw new MimosException(mensagem.toString());
    	     } finally {
    	     GerenciadorDeConexao.closeConexao(con, stmt);
+   	     System.out.println("por aqui");
    	 }
    	}
     public void excluirProduto(Produto produto) throws MimosException {
