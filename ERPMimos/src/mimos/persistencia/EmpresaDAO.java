@@ -14,7 +14,7 @@ public class EmpresaDAO {
 	    PreparedStatement stmt = null;
 	    Empresa empresa;
 	    ResultSet rs = null;
-	    private static final String SQL_INCLUIREMPRESA = "insert into empresa (id_empresa,endereco,filial"+
+	    private static final String SQL_INCLUIREMPRESA = "insert into empresa (id_empresa,endereco,filial)"+
 	             " values (?,?,?)";
 	    private static final String SQL_ALTERAREMPRESA = "UPDATE empresa set "
 	    		+"endereco=?,filial=?"
@@ -69,6 +69,7 @@ public class EmpresaDAO {
 	        if (empresa.getId_empresa() == Constante.NOVO){
 	            incluirEmpresa(empresa);
 	        }
+	        
 	        
 	    } 
 	    public void incluirEmpresa (Empresa empresa) throws MimosException{

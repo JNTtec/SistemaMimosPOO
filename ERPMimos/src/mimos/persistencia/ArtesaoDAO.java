@@ -9,14 +9,16 @@ import java.util.List;
 import mimos.constantes.Constante;
 import mimos.excecao.MimosException;
 import mimos.modelo.Artesao;
+import mimos.gui.ArtesaoView;
 
 public class ArtesaoDAO {
+	static Long resultid;
 	 Connection con = null;
 	    PreparedStatement stmt = null;
 	    Artesao artesao;
 	    ResultSet rs = null;
 	    
-	    private static final String SQL_INCLUIRARTESAO = "insert into artesao (cod_artesao,senha,nome,usuario,salario,habilidade,id_empresa"+
+	    private static final String SQL_INCLUIRARTESAO = "insert into artesao (cod_artesao,senha,nome,usuario,salario,habilidade,id_empresa)"+
                 " values (?,?,?,?,?,?,?)";
 
 private static final String SQL_ALTERARARTESAO = "UPDATE artesao set "
@@ -26,7 +28,8 @@ private static final String SQL_ALTERARARTESAO = "UPDATE artesao set "
 private static final String SQL_EXCLUIRARTESAO =  
 "Delete artesao where cod_artesao = ?";
 
-public void alterarArtesao(Artesao artesao) throws MimosException {
+
+public void alterarArtesao(Artesao artesao, String nome) throws MimosException {
     if (artesao == null){
     String mensagem = "Não foi informado o hospede a ser alterado";
     throw new MimosException(mensagem);
@@ -34,6 +37,28 @@ public void alterarArtesao(Artesao artesao) throws MimosException {
     
     con = null;
     stmt =null;
+ try{
+        
+        con = GerenciadorDeConexao.getConexao();
+        String sql = "Select * from empresa where filial = '"+nome+"'";
+        stmt = con.prepareStatement (sql);
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()==true){
+        	artesao.setId_empresa(rs.getLong("ID_EMPRESA"));
+        	resultid = artesao.getId_empresa();
+        	
+        }else{
+        	System.out.println("Empresa não encontrado");
+        }
+        rs.close();
+        ps.close();
+    }catch(SQLException e){  
+        System.out.println("Erro de SQL");  
+        e.printStackTrace();  
+    } 
+ con = null;
+ stmt =null;
     try{
         con = GerenciadorDeConexao.getConexao();
         stmt = con.prepareStatement(SQL_ALTERARARTESAO);        
@@ -62,6 +87,7 @@ public void excluirArtesao(Artesao artesao) throws MimosException {
     }
     con = null;
     stmt = null;
+    
     try {
     con = GerenciadorDeConexao.getConexao();
     stmt = con.prepareStatement(SQL_EXCLUIRARTESAO);
@@ -77,14 +103,14 @@ public void excluirArtesao(Artesao artesao) throws MimosException {
     }
                                                 
 
-public void gravarArtesao(Artesao artesao)throws MimosException {
+public void gravarArtesao(Artesao artesao,String nome)throws MimosException {
     if (artesao.getcodArtesao() == Constante.NOVO){
-        incluirArtesao(artesao);
+        incluirArtesao(artesao, nome);
     }
     
 }        
 
-public void incluirArtesao (Artesao artesao) throws MimosException{
+public void incluirArtesao (Artesao artesao, String nome) throws MimosException{
     if (artesao == null){
         String mensagem = "não foi informado o hospede a cadastrar";
         throw new MimosException(mensagem);
@@ -92,7 +118,25 @@ public void incluirArtesao (Artesao artesao) throws MimosException{
     try{
         
         con = GerenciadorDeConexao.getConexao();
-        stmt = con.prepareStatement (SQL_INCLUIRARTESAO);
+        String sql = "Select * from empresa where filial = '"+nome+"'";
+        stmt = con.prepareStatement (sql);
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()==true){
+        	artesao.setId_empresa(rs.getLong("ID_EMPRESA"));
+        	resultid = artesao.getId_empresa();
+        	
+        }else{
+        	System.out.println("Empresa não encontrado");
+        }
+        rs.close();
+        ps.close();
+    }catch(SQLException e){  
+        System.out.println("Erro de SQL");  
+        e.printStackTrace();  
+    } try {  
+    	con = GerenciadorDeConexao.getConexao();
+        stmt = con.prepareStatement (SQL_INCLUIRARTESAO); 
         GeradorDeChave geradorDeChave = new GeradorDeChave("ARTESAO");
         long codigoartesao = geradorDeChave.getProximoCodigo();
         String status = "ativo";
@@ -102,10 +146,13 @@ public void incluirArtesao (Artesao artesao) throws MimosException{
         stmt.setString (4,artesao.getUsuario());
         stmt.setDouble(5, artesao.getSalario());
         stmt.setString (6, artesao.getHabilidade());
-        stmt.setLong (7, artesao.getId_empresa());
+        stmt.setLong(7, artesao.getId_empresa());
+        System.out.println(artesao.getId_empresa());
+       
         stmt.executeUpdate();
         
-    }
+}
+
     catch (SQLException ex){
         StringBuffer mensagem = new StringBuffer ("não foi possível incluir o artesão");
         mensagem.append("\nMotivo:"+ex.getMessage());
@@ -137,6 +184,32 @@ public List pesquisarArtesao (String clausulaWhere) throws MimosException {
       }
       return resultado;
         }
+public ArrayList CarregarCombo ()throws MimosException{
+	String sql = "select * from empresa";
+	ArrayList result = new ArrayList();
+	
+	try{
+		con = GerenciadorDeConexao.getConexao();
+        stmt = con.prepareStatement(sql);
+        rs = stmt.executeQuery();
+        while (rs.next()){
+        	
+        	result.add(rs.getString( 3 ));
+        	
+        	
+        }
+	}catch (SQLException ex){
+        StringBuffer mensagem = new StringBuffer ("não foi possivel realizar a pesquisa ");
+        mensagem.append("\nMOtivo:" +ex);
+        
+    }finally{
+        GerenciadorDeConexao.closeConexao(con,stmt,rs);
+    }
+    return result;
+      }
+
+	
+
 
 private Artesao criarArtesao(ResultSet rs)throws MimosException {
     Artesao artesao= new Artesao();

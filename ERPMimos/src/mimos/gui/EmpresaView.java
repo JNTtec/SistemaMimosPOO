@@ -91,6 +91,7 @@ public class EmpresaView  implements ActionListener, ListSelectionListener{
 		txtCodigo = new JTextField(2);
 		txtEndereco = new JTextField(10);
 		txtFilial = new JTextField(100);
+		txtCodigo.setEnabled(false);
 		
 		panDetalhes.setLayout(new GridLayout(3, 2) );
 		panDetalhes.add(new JLabel("Código: "));
@@ -110,10 +111,10 @@ public class EmpresaView  implements ActionListener, ListSelectionListener{
 		panPrincipal.add(panDetalhes, BorderLayout.NORTH);
 		
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		janela.setBounds(400, 400, 400, 400);
+		janela.setBounds(500, 400, 500, 400);
 		janela.setContentPane(panPrincipal); 
 		janela.setVisible(true);
-		
+		janela.setLocationRelativeTo(null); 
 		
 		
 		

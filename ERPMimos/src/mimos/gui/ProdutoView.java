@@ -44,6 +44,7 @@ public class ProdutoView implements    ActionListener, ListSelectionListener {
 	private JTextField txtPrecoVenda;
 	private JTextField txtQuantidade;
 	
+	
 	private ProdutoModel modeloProduto;
 	private List<Produto> produto;
 	
@@ -76,7 +77,7 @@ public class ProdutoView implements    ActionListener, ListSelectionListener {
 		txtMargemLucro = new JTextField(30);
 		txtPrecoVenda = new JTextField(100);
 		txtQuantidade = new JTextField(50);
-		
+		txtCodigo.setEnabled(false);
 	
 		panDetalhes.setLayout(new GridLayout(6, 2) );
 		panDetalhes.add(new JLabel("Código: "));
@@ -105,6 +106,7 @@ public class ProdutoView implements    ActionListener, ListSelectionListener {
 		janela.setSize(600, 600);
 		janela.setVisible(true);
 		janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		janela.setLocationRelativeTo(null); 
 	}
 	
 	public Produto telaToProduto() {

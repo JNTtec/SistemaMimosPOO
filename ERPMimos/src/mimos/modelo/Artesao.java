@@ -1,13 +1,14 @@
 package mimos.modelo;
 
 public class Artesao {
-	private long codartesao;
+	private long codartesao=-1;
 	private String senha;
 	private String nome;
 	private String usuario;
 	private double salario;
 	private String habilidade;
 	private long id_empresa;
+	
 	public long getcodArtesao() {
 		return codartesao;
 	}

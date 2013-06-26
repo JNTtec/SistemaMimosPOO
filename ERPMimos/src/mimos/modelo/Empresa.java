@@ -1,7 +1,7 @@
 package mimos.modelo;
 
 public class Empresa {
-	private long id_empresa;
+	private long id_empresa=-1;
 	private String endereco;
 	private String filial;
 	public long getId_empresa() {

@@ -11,6 +11,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 
 import mimos.controle.MandarMensagem;
+import mimos.excecao.MimosException;
 
 public class Principal extends JFrame implements ActionListener {
 
@@ -146,9 +147,10 @@ public class Principal extends JFrame implements ActionListener {
 			
 		}else if ("Artesão".equalsIgnoreCase(cmd))
 		{
+			
 			ArtesaoView artesao = new ArtesaoView();
-			artesao.setVisible(true);
-			//this.setExtendedState(ICONIFIED);
+			artesao.Carregar();
+			System.out.println("foi");
 			
 		}else if ("Fornecedor".equalsIgnoreCase(cmd))
 		{
