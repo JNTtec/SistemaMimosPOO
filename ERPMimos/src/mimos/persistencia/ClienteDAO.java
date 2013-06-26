@@ -9,6 +9,7 @@ import java.util.List;
 import mimos.constantes.Constante;
 import mimos.excecao.MimosException;
 import mimos.modelo.Cliente;
+import mimos.constantes.Constante;
 
 public class ClienteDAO {
 	
@@ -35,12 +36,34 @@ public void alterarCliente(Cliente cliente, String nome) throws MimosException {
  con = null;
  stmt =null;
  try{
+     
+     con = GerenciadorDeConexao.getConexao();
+     String sql = "Select * from empresa where filial = '"+nome+"'";
+     stmt = con.prepareStatement (sql);
+     PreparedStatement ps = con.prepareStatement(sql);
+     ResultSet rs = ps.executeQuery();
+     if(rs.next()==true){
+     	cliente.setId_empresa(rs.getLong("ID_EMPRESA"));
+    
+     	
+     }else{
+     	System.out.println("Empresa não encontrado");
+     }
+     rs.close();
+     ps.close();
+ }catch(SQLException e){  
+     System.out.println("Erro de SQL");  
+     e.printStackTrace();  
+ } 
+	con = null;
+	stmt =null;
+ try{
      con = GerenciadorDeConexao.getConexao();
      stmt = con.prepareStatement(SQL_ALTERARCLIENTE);        
      stmt.setString(1, cliente.getNome());
      stmt.setString(2, cliente.getTelefone());
      stmt.setString(3, cliente.getEndereco());
-    // stmt.setDouble(4, cliente.getId_empresa());
+     stmt.setDouble(4, cliente.getId_empresa());
      stmt.setLong(5, cliente.getCod_cliente());
      stmt.executeUpdate();
      
@@ -53,6 +76,39 @@ public void alterarCliente(Cliente cliente, String nome) throws MimosException {
      GerenciadorDeConexao.closeConexao(con, stmt);
  }
 }
+
+public ArrayList CarregarCombo ()throws MimosException{
+	String sql = "select * from empresa";
+	ArrayList result = new ArrayList();
+	
+	try{
+		con = GerenciadorDeConexao.getConexao();
+        stmt = con.prepareStatement(sql);
+        rs = stmt.executeQuery();
+        while (rs.next()){
+        	
+        	result.add(rs.getString( 3 ));
+        	
+        	
+        }
+	}catch (SQLException ex){
+        StringBuffer mensagem = new StringBuffer ("não foi possivel realizar a pesquisa ");
+        mensagem.append("\nMOtivo:" +ex);
+        
+    }finally{
+        GerenciadorDeConexao.closeConexao(con,stmt,rs);
+    }
+    return result;
+      }
+
+
+
+
+
+
+
+
+
 public void excluirCliente(Cliente cliente) throws MimosException {
     if (cliente == null){
     String mensagem = "Não foi informado o hospede a ser desativado!";
@@ -85,6 +141,26 @@ public void incluirCliente (Cliente cliente, String nome) throws MimosException{
         String mensagem = "não foi informado o cliente a cadastrar";
         throw new MimosException(mensagem);
     }
+ try{
+        
+        con = GerenciadorDeConexao.getConexao();
+        String sql = "Select * from empresa where filial = '"+nome+"'";
+        stmt = con.prepareStatement (sql);
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()==true){
+        	cliente.setId_empresa(rs.getLong("ID_EMPRESA"));
+        
+        	
+        }else{
+        	System.out.println("Empresa não encontrado");
+        }
+        rs.close();
+        ps.close();
+    }catch(SQLException e){  
+        System.out.println("Erro de SQL");  
+        e.printStackTrace();  
+    }
     try{
         
         con = GerenciadorDeConexao.getConexao();
@@ -96,7 +172,7 @@ public void incluirCliente (Cliente cliente, String nome) throws MimosException{
         stmt.setString (2 ,cliente.getNome());
         stmt.setString (3 ,cliente.getTelefone());
         stmt.setString (4 ,cliente.getEndereco());
-    //    stmt.setLong (5, cliente.getId_empresa());
+       stmt.setLong (5, cliente.getId_empresa());
         stmt.executeUpdate();
         
     }

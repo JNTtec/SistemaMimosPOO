@@ -55,6 +55,7 @@ public class Menu extends JFrame implements ActionListener {
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		setContentPane(contentPane);
+		setLocationRelativeTo(null);
 		
 		contentPane.setLayout(new GridLayout(1, 2, 0, 0));
 		
@@ -80,9 +81,9 @@ public class Menu extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(e.getSource() == btnVenda){
-			System.out.println("oiiii");
+			VendaView vw = new VendaView();
 		}else if (e.getSource() == btnConfi){
-			
+			Principal p = new Principal(); 
 		
 			
 			

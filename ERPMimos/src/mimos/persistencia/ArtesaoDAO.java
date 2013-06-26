@@ -29,6 +29,10 @@ private static final String SQL_EXCLUIRARTESAO =
 "Delete from artesao where cod_artesao = ?";
 
 
+
+
+
+
 public void alterarArtesao(Artesao artesao, String nome) throws MimosException {
     if (artesao == null){
     String mensagem = "Não foi informado o hospede a ser alterado";
@@ -47,7 +51,7 @@ public void alterarArtesao(Artesao artesao, String nome) throws MimosException {
         if(rs.next()==true){
         	artesao.setId_empresa(rs.getLong("ID_EMPRESA"));
         	resultid = artesao.getId_empresa();
-        	System.out.println(artesao.getId_empresa());
+        	
         }else{
         	System.out.println("Empresa não encontrado");
         }
@@ -57,18 +61,20 @@ public void alterarArtesao(Artesao artesao, String nome) throws MimosException {
         System.out.println("Erro de SQL");  
         e.printStackTrace();  
     } 
-
+ 	con = null;
+ 	stmt =null;
     try{
         con = GerenciadorDeConexao.getConexao();
         stmt = con.prepareStatement(SQL_ALTERARARTESAO);        
         stmt.setString(1, artesao.getSenha());
         stmt.setString(2, artesao.getNome());
         stmt.setString(3, artesao.getUsuario());
+        
         stmt.setDouble(4, artesao.getSalario());
         stmt.setString(5, artesao.getHabilidade());
         stmt.setLong(6, artesao.getId_empresa());
         stmt.setLong(7, artesao.getcodArtesao());
-        stmt.executeUpdate();
+        stmt.executeUpdate(); 
         
         }catch(SQLException ex){
             StringBuffer mensagem = new StringBuffer("Não foi possível atualizar "
@@ -79,6 +85,11 @@ public void alterarArtesao(Artesao artesao, String nome) throws MimosException {
         GerenciadorDeConexao.closeConexao(con, stmt);
     }
 }
+
+
+
+
+
 public void excluirArtesao(Artesao artesao) throws MimosException {
     if (artesao == null){
     String mensagem = "Não foi informado o hospede a ser desativado!";

@@ -50,6 +50,7 @@ public class VendaView extends JFrame implements ActionListener {
 	principal.add(btnCancelar);
 	
 	btnAddProduto.setBounds(50, 60, 150, 30);
+	btnAddProduto.addActionListener(this);
 	principal.add(btnAddProduto);
 	btnRemoverProduto.setBounds(230, 60, 150, 30);
 	principal.add(btnRemoverProduto);
@@ -85,7 +86,10 @@ public class VendaView extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource() == btnAddProduto){
+			ProdutoView p = new ProdutoView();
+			System.out.println("Teste");
+		}
 		
 	}
 

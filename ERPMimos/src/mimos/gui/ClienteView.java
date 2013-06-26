@@ -1,7 +1,6 @@
 package mimos.gui;
 import mimos.*;
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +12,7 @@ import java.util.List;
 import java.util.Vector;
 
 import mimos.constantes.Sexo;
+import mimos.controle.ArtesaoControle;
 import mimos.controle.ClienteControle;
 import mimos.controle.MandarMensagem;
 import mimos.excecao.MimosException;
@@ -53,7 +53,7 @@ import javax.swing.ListSelectionModel;
 
 
 
-import javax.swing.SwingConstants;
+
 
 public class ClienteView implements ActionListener , ListSelectionListener{
 
@@ -65,7 +65,8 @@ public class ClienteView implements ActionListener , ListSelectionListener{
 	private JPanel panPrincipal;
 	private JPanel panSouth;
 	private JPanel panDetalhes;
-		
+	private JTable tabela;
+	
 	private final JButton btnInserir = new JButton("Inserir");
 	private final JButton btnAtualizar = new JButton("Atualizar");
 	private final JButton btnRemover = new JButton("Remover");
@@ -80,21 +81,21 @@ public class ClienteView implements ActionListener , ListSelectionListener{
 	private JTextField txtHabilidade;
 	private JTextField txtDataNascimento;
 	private JTextField txtEmail;
-	
-	private final DefaultComboBoxModel cmbSexoModel = new DefaultComboBoxModel(Sexo.values()); 
-	private JComboBox<Sexo> cmbSexo;
 	private JComboBox combo;
-	
-	
-	private JTable tabela = new JTable();
-	public MandarMensagem m = new MandarMensagem();
-	private ClienteTableModel ClienteModelo;
+	private JComboBox<Sexo> cmbSexo;	
+	private final DefaultComboBoxModel cmbSexoModel = new DefaultComboBoxModel(Sexo.values()); 
 	private List<Cliente> cliente;
 	private List<Cliente> listaCombo;
-	String nomeCliente;
+	private String nomeCliente;
+	
+	private ClienteTableModel modeloCliente;
+	
+	
+
+	@SuppressWarnings("unchecked")
 	public ClienteView() {
 		
-		String nomeCliente;
+	
 		janela=new JFrame ("Cadastro de Clientes");
 		cliente = new ArrayList<Cliente>();
 		panDetalhes = new JPanel();
@@ -117,7 +118,7 @@ public class ClienteView implements ActionListener , ListSelectionListener{
 		txtCodigo.setEnabled(false);
 		combo = new JComboBox();
 		ClienteControle ct = new ClienteControle();
-		tabela.getSelectionModel().addListSelectionListener( this );
+		
 		
 		cmbSexo = new JComboBox<Sexo>() ;
 		cmbSexo.setModel(cmbSexoModel);
@@ -143,8 +144,8 @@ public class ClienteView implements ActionListener , ListSelectionListener{
 		panDetalhes.add(new JLabel("Email: "));
 		panDetalhes.add(txtEmail);
 		
-		ClienteModelo = new ClienteTableModel( cliente );
-		tabela = new JTable(ClienteModelo);
+		modeloCliente = new ClienteTableModel( cliente );
+		tabela = new JTable(modeloCliente);
 		tabela.getSelectionModel().addListSelectionListener( this );
 
 		panPrincipal.setLayout( new BorderLayout() );
@@ -166,7 +167,25 @@ public class ClienteView implements ActionListener , ListSelectionListener{
 		btnSair.addActionListener(this);
 		btnPesquisar.addActionListener(this);
 	}
-	
+public void Carregar(){
+		
+		try {
+			ClienteControle cli = new ClienteControle();
+			listaCombo = cli.buscaTodos();
+		} catch (MimosException ex) {
+			// TODO Auto-generated catch block
+			System.out.println("nao foi");
+			
+		} /*'produtoDAO é meu objeto que retorna os produtos do banco.*/  
+		Iterator i = listaCombo.iterator();  
+		  
+		while(i.hasNext()) {  
+		  combo.addItem(String.valueOf(i.next()));  
+		} 
+		combo.updateUI();
+		
+		
+	}
 		public Cliente telaToCliente2() {
 			Cliente cliente = new Cliente();		
 			cliente.setCod_cliente(Long.parseLong(txtCodigo.getText()));			
@@ -221,6 +240,7 @@ public class ClienteView implements ActionListener , ListSelectionListener{
 		{
 		try {
 					ct.adiciona(telaToCliente(),nomeCliente);
+					nomeCliente = combo.getSelectedItem().toString();
 			} catch (MimosException ex) {
 				System.out.println(ex.getMessage());
 			}
@@ -240,11 +260,9 @@ public class ClienteView implements ActionListener , ListSelectionListener{
 					clientes = ct.realizaPesquisa(txtNome.getText());
 					tabela.setModel(new ClienteTableModel( clientes ) );
 					tabela.repaint();
-					ClienteModelo.setCliente(clientes);
-					
-			}else
-					m.enviarMensagem("O campo Nome não pode estar vazio", "Erro Pesquisa" , 1);
-				
+					modeloCliente.setCliente(clientes);
+				}
+			
 			} catch (MimosException ex) {
 				// TODO Auto-generated catch block
 				ex.printStackTrace();
@@ -294,7 +312,6 @@ public class ClienteView implements ActionListener , ListSelectionListener{
 	}
 		
 }
-
 	
 	
 

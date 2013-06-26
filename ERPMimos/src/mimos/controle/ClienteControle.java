@@ -1,6 +1,8 @@
 package mimos.controle;
 import mimos.excecao.MimosException;
+import mimos.modelo.Artesao;
 import mimos.modelo.Cliente;
+import mimos.persistencia.ArtesaoDAO;
 import mimos.persistencia.ClienteDAO;
 import java.util.*;
 
@@ -25,5 +27,13 @@ public class ClienteControle {
         ClienteDAO dao = new ClienteDAO();
         dao.alterarCliente(cliente, nome);
 }
+    public ArrayList<Cliente> buscaTodos()throws MimosException{
+		ArrayList<Cliente> busca = new ArrayList<Cliente>();
+		ArtesaoDAO dao = new ArtesaoDAO();
+		busca=dao.CarregarCombo();
+		
+    	return busca;
+    	
+    }
 
 }
