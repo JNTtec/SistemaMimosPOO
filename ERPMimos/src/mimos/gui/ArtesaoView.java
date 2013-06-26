@@ -142,9 +142,7 @@ public class ArtesaoView  implements ActionListener, ListSelectionListener{
 	
 		
 	}
-	public void carregaCombo() throws MimosException{
-
-	}
+	
 	public Artesao telaToArtesao() {
 		Artesao artesao = new Artesao();
 	
@@ -184,7 +182,7 @@ public class ArtesaoView  implements ActionListener, ListSelectionListener{
 		artesao.setUsuario( txtUsuario.getText() );
 		artesao.setSalario(Double.parseDouble( txtSalario.getText()) );
 		artesao.setHabilidade( txtHabilidade.getText() );
-	
+		nomeEmpresa = combo.getSelectedItem().toString();  
 		return artesao;
 		
 	}

@@ -27,7 +27,7 @@ private static final String SQL_ALTERARCLIENTE = "UPDATE cliente set "
 private static final String SQL_EXCLUIRCLIENTE =  
 "Delete cliente where cod_cliente = ?";
 
-public void alterarCliente(Cliente cliente) throws MimosException {
+public void alterarCliente(Cliente cliente, String nome) throws MimosException {
  if (cliente == null){
  String mensagem = "Não foi informado o cliente a ser alterado";
  throw new MimosException(mensagem);
@@ -73,14 +73,14 @@ public void excluirCliente(Cliente cliente) throws MimosException {
     GerenciadorDeConexao.closeConexao(con, stmt);
     }
     }
-public void gravarCliente(Cliente cliente)throws MimosException {
+public void gravarCliente(Cliente cliente, String nome)throws MimosException {
     if (cliente.getCod_cliente() == Constante.NOVO){
-        incluirCliente(cliente);
+        incluirCliente(cliente, nome);
     }
     
 }        
 
-public void incluirCliente (Cliente cliente) throws MimosException{
+public void incluirCliente (Cliente cliente, String nome) throws MimosException{
     if (cliente== null){
         String mensagem = "não foi informado o cliente a cadastrar";
         throw new MimosException(mensagem);

@@ -5,9 +5,9 @@ import mimos.persistencia.ClienteDAO;
 import java.util.*;
 
 public class ClienteControle {
-	public void adiciona (Cliente cliente) throws MimosException{
+	public void adiciona (Cliente cliente, String nome) throws MimosException{
         ClienteDAO dao = new ClienteDAO ();
-        dao.gravarCliente(cliente);
+        dao.gravarCliente(cliente, nome);
     }
     public List <Cliente> realizaPesquisa(String nome) throws MimosException{
       List <Cliente> lista = new ArrayList<Cliente>();
@@ -21,9 +21,9 @@ public class ClienteControle {
         dao.excluirCliente(cliente);
 }
     
-    public void alterarCliente(Cliente cliente) throws MimosException {
+    public void alterarCliente(Cliente cliente, String nome) throws MimosException {
         ClienteDAO dao = new ClienteDAO();
-        dao.alterarCliente(cliente);
+        dao.alterarCliente(cliente, nome);
 }
 
 }

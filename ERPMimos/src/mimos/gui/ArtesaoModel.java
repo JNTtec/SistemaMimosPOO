@@ -51,10 +51,10 @@ public class ArtesaoModel extends AbstractTableModel{
 				o = artesao.getHabilidade();
 			} else if (coluna ==6){
 				o = artesao.getId_empresa();
+			}
 			return o;
 		}
-			return null;
-		}
+		
 		public List<Artesao> getArtesao() {
 			return artesao;
 		}

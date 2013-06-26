@@ -134,7 +134,7 @@ public class Principal extends JFrame implements ActionListener {
 		}else if ("Cliente".equalsIgnoreCase(cmd))
 		{
 			ClienteView cliente = new ClienteView();
-			cliente.setVisible(true);
+			
 			//this.setExtendedState(ICONIFIED);
 			
 			

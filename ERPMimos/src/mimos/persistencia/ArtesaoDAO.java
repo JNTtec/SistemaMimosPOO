@@ -26,7 +26,7 @@ private static final String SQL_ALTERARARTESAO = "UPDATE artesao set "
 +"habilidade=?,id_empresa=? "
 +"where cod_artesao=?";
 private static final String SQL_EXCLUIRARTESAO =  
-"Delete artesao where cod_artesao = ?";
+"Delete from artesao where cod_artesao = ?";
 
 
 public void alterarArtesao(Artesao artesao, String nome) throws MimosException {
@@ -47,7 +47,7 @@ public void alterarArtesao(Artesao artesao, String nome) throws MimosException {
         if(rs.next()==true){
         	artesao.setId_empresa(rs.getLong("ID_EMPRESA"));
         	resultid = artesao.getId_empresa();
-        	
+        	System.out.println(artesao.getId_empresa());
         }else{
         	System.out.println("Empresa não encontrado");
         }
@@ -57,8 +57,7 @@ public void alterarArtesao(Artesao artesao, String nome) throws MimosException {
         System.out.println("Erro de SQL");  
         e.printStackTrace();  
     } 
- con = null;
- stmt =null;
+
     try{
         con = GerenciadorDeConexao.getConexao();
         stmt = con.prepareStatement(SQL_ALTERARARTESAO);        

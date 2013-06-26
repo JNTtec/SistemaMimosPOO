@@ -13,21 +13,21 @@ public class ClienteTableModel extends AbstractTableModel {
 	private static final long serialVersionUID = -118848275315309927L;
 	private List<Cliente> clientes;
 	private final static String[] NomeColunas = {"COD", "NOME", "ENDEREÇO", "TELEFONE", "CPF","SEXO" , "DATA NASCIMENTO","EMAIL"};
-
+	private final static int COLUNAS = NomeColunas.length;
 	public ClienteTableModel(List<Cliente> clientes) { 
 		this.clientes = clientes;
 	}
 	
-	public Cliente get(int linha) { 
-		return clientes.get(linha);
-	}
 	
 	@Override
 	public int getColumnCount() {
 		// TODO Auto-generated method stub
-		return NomeColunas.length;
+		return COLUNAS;
 	}
-
+	public Cliente get(int linha) { 
+		return clientes.get(linha);
+	}
+	
 	@Override
 	public int getRowCount() {
 		// TODO Auto-generated method stub
@@ -37,11 +37,13 @@ public class ClienteTableModel extends AbstractTableModel {
 	
 
 	@Override
-	public String getColumnName(int index) {
-		// TODO Auto-generated method stub
-		return NomeColunas[index];
+	public String getColumnName(int coluna) {
+		if (coluna < COLUNAS) { 
+			return NomeColunas[ coluna ];
+		} else { 
+			return "Outras";
+		}
 	}
-
 	@Override
 	public Object getValueAt(int linha, int coluna) {
 		Cliente c = clientes.get( linha );
