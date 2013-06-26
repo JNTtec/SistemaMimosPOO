@@ -1,0 +1,52 @@
+package mimos.gui;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Frame;
+import java.awt.Dimension;
+import java.awt.LayoutManager;
+import java.awt.Rectangle;
+import javax.swing.JLabel;
+
+public class Venda extends JFrame {
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Venda frame = new Venda();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Venda() {
+		setMaximumSize(new Dimension(2147483636, 2147483639));
+		setExtendedState(Frame.MAXIMIZED_BOTH);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(20, 100, 450, 300);
+			
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(64, 62, 46, 14);
+		getContentPane().add(lblNewLabel);
+		
+		JPanel principal = new JPanel();
+		principal.setLayout(null);
+		this.setContentPane(principal);
+		
+		
+	}
+}

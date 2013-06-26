@@ -1,0 +1,84 @@
+package mimos.gui;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import java.awt.Frame;
+import java.awt.Dimension;
+import java.awt.LayoutManager;
+import java.awt.Rectangle;
+import java.security.Principal;
+
+import javax.swing.JLabel;
+import java.awt.Component;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+
+public class Venda extends JFrame {
+	private JTextField txtValorTotal;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Venda frame = new Venda();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Venda() {
+		setMaximumSize(new Dimension(2147483636, 2147483639));
+		setExtendedState(Frame.MAXIMIZED_BOTH);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+			
+		
+		JPanel principal = new JPanel();
+		principal.setPreferredSize(new Dimension(12000, 12000));
+		principal.setMinimumSize(new Dimension(12000, 12000));
+		principal.setMaximumSize(new Dimension(2147483647, 2147483647));
+		principal.setSize(new Dimension(12000, 12000));
+		principal.setLayout(null);
+		this.setContentPane(principal);
+		principal.setSize(40, 5);
+		JLabel lblValortotal = new JLabel("Valor Total");
+		lblValortotal.setBounds(225, 152, 75, 23);
+		principal.add(lblValortotal);
+		
+		txtValorTotal = new JTextField();
+		txtValorTotal.setBounds(214, 173, 86, 20);
+		principal.add(txtValorTotal);
+		txtValorTotal.setColumns(10);
+		
+		JButton btnFinalizar = new JButton("Finalizar");
+		btnFinalizar.setBounds(335, 121, 89, 23);
+		principal.add(btnFinalizar);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.setBounds(335, 152, 89, 23);
+		principal.add(btnCancelar);
+		
+		JButton btnAdicionarProduto = new JButton("Adicionar Produto");
+		btnAdicionarProduto.setBounds(41, 82, 117, 23);
+		principal.add(btnAdicionarProduto);
+		
+		JButton btnRemoverProduto = new JButton("Remover Produto");
+		btnRemoverProduto.setBounds(164, 82, 117, 23);
+		principal.add(btnRemoverProduto);
+		
+		
+	}
+}

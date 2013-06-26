@@ -1,0 +1,77 @@
+package mimos.gui;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class Venda extends JFrame implements ActionListener {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JPanel principal = new JPanel();
+	private JButton btnFinalizar = new JButton("Finalizar Venda");
+	private JButton btnCancelar = new JButton("Cancelar Venda");
+	private JButton btnAddProduto = new JButton("Adicionar Produto");
+	private JButton btnRemoverProduto = new JButton("Remover Produto");
+	private JLabel lblValorTotal = new JLabel("Valor total");
+	private JLabel lblValorTroco = new JLabel("Valor troco");
+	private JTextField txtValorTotal = new JTextField();
+	private JTextField txtValorTroco = new JTextField();
+	
+	
+	
+	public Venda() {
+	
+	principal.setLayout(null);
+	this.setContentPane(principal);
+	lblValorTotal.setBounds(580, 600, 100, 30);
+	principal.add(lblValorTotal);
+	
+	txtValorTotal.setBounds(560, 630, 100, 30);
+	principal.add(txtValorTotal);
+	
+	btnAddProduto.setBounds(670, 500, 150, 30);
+	principal.add(btnAddProduto);
+	btnRemoverProduto.setBounds(670, 550, 150, 30);
+	principal.add(btnRemoverProduto);
+	
+	
+	this.setBounds(200,20,850,750);
+	this.setVisible(true);
+	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+	
+	
+		
+		
+			}
+	/**
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * @param args
+	 * 
+	 * 
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		new Venda();
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
